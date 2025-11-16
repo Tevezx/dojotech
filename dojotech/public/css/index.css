@@ -570,3 +570,72 @@ main {
     color: var(--white);
 }
 
+.valores-section {
+    background-color: var(--black);
+    padding: 80px 0;
+    opacity: 0.9;
+}
+
+.valores-header {
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 50px;
+}
+
+.valores-header h2 {
+    font-size: 3em;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.valores-header p {
+    font-size: 1.1em;
+    color: #ccc;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.valores-grid {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.valor-card {
+    background-color: var(--terciaria);
+    color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 5px solid transparent; 
+}
+
+.valor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    border-top-color: var(--primary);
+}
+
+.valor-card img {
+    object-fit: cover;
+    width: 260px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.valor-card h3 {
+    font-size: 1.5em;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.valor-card p {
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+
