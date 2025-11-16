@@ -209,7 +209,7 @@ main {
 .hapkido-section{
     display: flex;
     align-items: stretch;
-    background-color: var(--terciaria);
+    background-color: var(--black);
     opacity: 1;
     flex-wrap: wrap;
 }
@@ -265,12 +265,12 @@ main {
 }
 
 .hapkido-section > .sobre > p{
-    font-size: 1.1em;
+    font-size: 1em;
     line-height: 1.7em;
 }
 
 .faixas-section {
-    background-color: var(--main);
+    background-color: var(--black);
     padding: 60px 0;
 }
 
@@ -363,7 +363,7 @@ main {
 }
 
 .valores-section {
-    background-color: var(--terciaria);
+    background-color: var(--black);
     padding: 80px 0;
     opacity: 1;
 }
