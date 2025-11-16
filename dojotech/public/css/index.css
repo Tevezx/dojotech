@@ -11,7 +11,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'poppins';
+    font-family: 'poppins', sans-serif;
 }
 
 header {
@@ -35,9 +35,22 @@ header {
     padding: 0 20px;
 }
 
+header a{
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    max-height: 80px;
+}
+
 header a img {
-    width: 370px;
+    width: 350px;
     height: auto;
+}
+
+header nav{
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
 }
 
 header nav ul {
@@ -50,9 +63,15 @@ header nav ul li {
     padding: 10px;
 }
 
+header nav ul li a{
+    text-decoration: none;
+    color: var(--white);
+    transition: color 0.3s;
+}
+
 header nav ul li:last-child a {
     border: 2px solid var(--primary);
-    padding: 10px 15px; 
+    padding: 5px 15px; 
     border-radius: 5px; 
     line-height: 1; 
 }
@@ -66,7 +85,7 @@ header nav ul li:not(:last-child) a {
     text-decoration: none;
     color: var(--white);
     position: relative; 
-    padding-bottom: 5px;
+    padding-bottom: 5;
     transition: color 0.3s;
 }
 
@@ -89,12 +108,6 @@ header nav ul li:not(:last-child) a:hover {
     color: var(--primary);
 }
 
-header nav ul li a {
-    text-decoration: none;
-    color: var(--white);
-    transition: color 0.3s;
-}
-
 main {
     min-height: 80vh;
 }
@@ -104,7 +117,7 @@ main {
     justify-content: center;
     align-items: center;
     position: relative;
-    min-height: calc(100vh - 80px);
+    min-height: 100vh;
     width: 100%;
     background-image: url('../assets/imgs/home.png');
     background-size: cover;
@@ -162,25 +175,31 @@ main {
 
 .logos-section{
     background-color: var(--black); 
-    padding: 05px 0;
+    padding: 15px 0;
     z-index: 10; 
     position: relative;
-    opacity: 0.95; 
+    opacity: 1; 
 }
 
 .logos-section .container-logo {
     display: flex;
     justify-content: space-around; 
     align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 .logos-section .logo-item {
     text-align: center;
 }
 
 .logos-section .logo-item img {
-    width: 150px;
+    width: 120px;
     height: auto;
     transition: opacity 0.3s;
+    opacity: 0.5;
 }
 
 .logos-section .logo-item img:hover {
@@ -190,15 +209,16 @@ main {
 .hapkido-section{
     display: flex;
     align-items: stretch;
-    background-color: var(--black);
-    opacity: 0.9;
+    background-color: var(--terciaria);
+    opacity: 1;
+    flex-wrap: wrap;
 }
 
 .hapkido-section > img{
     display: block;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    width: clamp(300px, 50%, 700px);
     height: auto;
     object-fit: cover;
     padding: 10px;
@@ -208,11 +228,12 @@ main {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 50%;
+    width: clamp(300px, 50%, 700px);
     color: var(--white); 
     text-align: start;
     justify-content: center;
     padding: 40px;
+    flex-grow: 1;
 }
 
 .hapkido-section > .sobre > a{
@@ -249,7 +270,7 @@ main {
 }
 
 .faixas-section {
-    background-color: var(--terciaria);
+    background-color: var(--main);
     padding: 60px 0;
 }
 
@@ -269,18 +290,15 @@ main {
 }
 
 .faixas-header h2 {
-    font-size: 3em;
+    font-size: clamp(2em, 5vw, 3em);
     margin-bottom: 0;
-    padding-right: 180px; 
+    padding-right: 0;
+    text-align: center;
+    width: 100%; 
 }
 
 .faixas-header img {
-    width: 160px; 
-    height: auto;
-    position: absolute;
-    right: 50%;
-    transform: translateX(350%) translateY(-50%);
-    top: 50%;
+    display: none;
 }
 
 .faixas-grid {
@@ -345,9 +363,9 @@ main {
 }
 
 .valores-section {
-    background-color: var(--black);
+    background-color: var(--terciaria);
     padding: 80px 0;
-    opacity: 0.9;
+    opacity: 1;
 }
 
 .valores-header {
@@ -383,6 +401,9 @@ main {
     color: var(--white);
     padding: 30px;
     border-radius: 8px;
+    border-top: 5px solid transparent;
+    flex: 1 1 300px;
+    min-width: 280px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-top: 5px solid transparent; 
@@ -420,15 +441,16 @@ main {
 .game-content-wrapper {
     display: flex;
     align-items: center;
-    gap: 60px;
+    gap: 40px;
     max-width: 1100px;
     padding: 0 20px;
+    margin: 0 auto;
 }
 
 .quiz-section img {
-    width: 45%;
+    width: 100%;
     max-width: 400px;
-    height: 660px;
+    height: auto;
     object-fit: cover;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
@@ -436,6 +458,7 @@ main {
 .game-info {
     flex-grow: 1;
     color: var(--white);
+    min-width: 300px;
 }
 
 .game-header {
@@ -501,4 +524,80 @@ main {
 
 .btn-start-game:hover {
     background-color: var(--secondary);
+}
+
+footer{
+    background-color: var(--main); 
+    color: #ccc;
+    padding-top: 40px;
+    font-size: 0.9em;
+    overflow: hidden;
+}
+
+.container-footer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 30px; 
+    border-bottom: 1px solid var(--secondary);
+}
+
+.footer-coluna h3 {
+    color: var(--white);
+    font-size: 1.3em;
+    margin-bottom: 18px;
+    border-bottom: 3px solid var(--primary);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.logo-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
+}
+.logo-footer{
+    width: 250px;
+    height: auto;
+    margin-bottom: 5px;
+}
+
+.logo-info p {
+    line-height: 1.5;
+    margin-bottom: 0;
+    max-width: 400px;
+    color: #aaa;
+}
+
+.links-uteis ul {
+    list-style: none;
+    padding: 0;
+}
+
+.links-uteis a {
+    text-decoration: none;
+    color: #ccc;
+    line-height: 1.8;
+    transition: color 0.3s;
+    display: block; 
+    font-weight: bold;
+}
+
+.links-uteis a:hover {
+    color: var(--primary);
+    transform: translateX(3px); 
+    transition: all 0.2s ease-out;
+}
+
+.direitos-autorais {
+    text-align: center;
+    padding: 15px 0;
+    background-color: var(--main); 
+    color: #999;
+    font-size: 0.8em;
 }
