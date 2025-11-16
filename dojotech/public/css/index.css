@@ -474,3 +474,99 @@ main {
     line-height: 1.5em;
 }
 
+.faixas-section {
+    background-color: var(--main);
+    padding: 60px 0;
+}
+
+.faixas-section .container {
+    display: block; 
+}
+
+.faixas-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 40px;
+    position: relative;
+    width: 100%;
+}
+
+.faixas-header h2 {
+    font-size: 3em;
+    margin-bottom: 0;
+    padding-right: 180px; 
+}
+
+.faixas-header img {
+    width: 160px; 
+    height: auto;
+    position: absolute;
+    right: 50%;
+    transform: translateX(350%) translateY(-50%);
+    top: 50%;
+}
+
+.faixas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+}
+
+.faixa-card {
+    min-height: 200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    color: var(--terciaria);
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.faixa-card p {
+    font-size: 1em;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+.faixa-white {
+    background-color: var(--white);
+    color: var(--terciaria);
+    grid-column: span 2; 
+}
+
+.faixa-yellow {
+    background-color: yellow;
+    color: var(--terciaria);
+    grid-column: span 1; 
+}
+
+.faixa-blue {
+    background-color: blue;
+    color: var(--white); 
+    grid-column: span 1; 
+}
+
+.faixa-red {
+    background-color: var(--primary);
+    color: var(--white); 
+    grid-column: span 1; 
+}
+
+.faixa-black {
+    background-color: var(--black); 
+    color: var(--white);
+    grid-column: span 1; 
+}
+
+.faixa-blue p,
+.faixa-red p,
+.faixa-black p {
+    color: var(--white);
+}
+
