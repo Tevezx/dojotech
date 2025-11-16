@@ -1,7 +1,7 @@
 :root {
-    --main: #413233;
-    --primary: #C0353A;
-    --secondary: #6B4143;
+    --main: #413233; 
+    --primary: #C0353A; 
+    --secondary: #6B4143; 
     --terciaria: #332C2C;
     --black: #000000;
     --white: #FFFFFF;
@@ -14,15 +14,15 @@
     font-family: 'poppins', sans-serif;
 }
 
-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    background-color: transparent;
-    z-index: 100;
-    height: 80px;
-    width: 100%;
+html {
+    scroll-behavior: smooth;
+}
+
+#hapkido-section, 
+#faixas-section, 
+#valores-section, 
+#quiz-section {
+    scroll-margin-top: 90px; 
 }
 
 .container {
@@ -33,6 +33,23 @@ header {
     width: 100%;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+main {
+    min-height: 80vh;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute; 
+    background-color: transparent;
+    z-index: 1000;
+    height: 80px;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 
 header a{
@@ -85,7 +102,7 @@ header nav ul li:not(:last-child) a {
     text-decoration: none;
     color: var(--white);
     position: relative; 
-    padding-bottom: 5;
+    padding-bottom: 5px; 
     transition: color 0.3s;
 }
 
@@ -106,10 +123,6 @@ header nav ul li:not(:last-child) a:hover::after {
 
 header nav ul li:not(:last-child) a:hover {
     color: var(--primary);
-}
-
-main {
-    min-height: 80vh;
 }
 
 .home {
@@ -206,7 +219,7 @@ main {
     opacity: 1; 
 }
 
-.hapkido-section{
+#hapkido-section{
     display: flex;
     align-items: stretch;
     background-color: var(--black);
@@ -214,7 +227,7 @@ main {
     flex-wrap: wrap;
 }
 
-.hapkido-section > img{
+#hapkido-section > img{
     display: block;
     align-items: center;
     justify-content: center;
@@ -224,7 +237,7 @@ main {
     padding: 10px;
 } 
 
-.hapkido-section > .sobre{
+#hapkido-section > .sobre{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -236,7 +249,7 @@ main {
     flex-grow: 1;
 }
 
-.hapkido-section > .sobre > a{
+#hapkido-section > .sobre > a{
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -250,51 +263,43 @@ main {
     transition: background-color 0.3s, border-color 0.3s;
 }
 
-.hapkido-section > .sobre > a:hover {
+#hapkido-section > .sobre > a:hover {
     background-color: var(--main);
     border-color: var(--main);
 }
 
-.hapkido-section > .sobre > a > img{
+#hapkido-section > .sobre > a > img{
     display: block;
     width: 20px;
 }
 
-.hapkido-section > .sobre > h1{
+#hapkido-section > .sobre > h1{
     font-size: 1.9em;
 }
 
-.hapkido-section > .sobre > p{
+#hapkido-section > .sobre > p{
     font-size: 1em;
     line-height: 1.7em;
 }
 
-.faixas-section {
-    background-color: var(--black);
-    padding: 60px 0;
+#faixas-section {
+    background-color: var(--terciaria); 
+    padding: 80px 0;
 }
 
-.faixas-section .container {
+#faixas-section .container {
     display: block; 
 }
 
 .faixas-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     text-align: center;
     color: var(--white);
-    margin-bottom: 40px;
-    position: relative;
-    width: 100%;
+    margin-bottom: 50px; 
 }
 
 .faixas-header h2 {
     font-size: clamp(2em, 5vw, 3em);
     margin-bottom: 0;
-    padding-right: 0;
-    text-align: center;
-    width: 100%; 
 }
 
 .faixas-header img {
@@ -303,69 +308,57 @@ main {
 
 .faixas-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
     gap: 20px;
 }
 
 .faixa-card {
-    min-height: 200px;
-    padding: 20px;
+    min-height: 150px;
+    padding: 25px;
     display: flex;
     flex-direction: column; 
     align-items: center; 
     justify-content: center; 
     text-align: center; 
-    color: var(--terciaria);
-    border-radius: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background-color: var(--terciaria);
+    color: var(--white);
+    border-radius: 8px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    border-left: 5px solid transparent; 
+    transition: all 0.3s ease;
 }
 
 .faixa-card p {
     font-size: 1em;
     font-style: italic;
-    line-height: 1.5;
+    line-height: 1.6;
+    color: #ccc; 
 }
 
-.faixa-white {
-    background-color: var(--white);
-    color: var(--terciaria);
-    grid-column: span 2; 
+.faixa-white { 
+    border-left-color: var(--white); 
+}
+.faixa-yellow { 
+    border-left-color: yellow; 
+}
+.faixa-blue { 
+    border-left-color: blue; 
+}
+.faixa-red { 
+    border-left-color: var(--primary); 
+}
+.faixa-black { 
+    border-left-color: var(--black); 
 }
 
-.faixa-yellow {
-    background-color: yellow;
-    color: var(--terciaria);
-    grid-column: span 1; 
+.faixa-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
 }
 
-.faixa-blue {
-    background-color: blue;
-    color: var(--white); 
-    grid-column: span 1; 
-}
-
-.faixa-red {
-    background-color: var(--primary);
-    color: var(--white); 
-    grid-column: span 1; 
-}
-
-.faixa-black {
-    background-color: var(--black); 
-    color: var(--white);
-    grid-column: span 1; 
-}
-
-.faixa-blue p,
-.faixa-red p,
-.faixa-black p {
-    color: var(--white);
-}
-
-.valores-section {
+#valores-section {
     background-color: var(--black);
     padding: 80px 0;
-    opacity: 1;
 }
 
 .valores-header {
@@ -375,7 +368,7 @@ main {
 }
 
 .valores-header h2 {
-    font-size: 3em;
+    font-size: clamp(2.5em, 5vw, 3em);
     color: var(--white);
     margin-bottom: 10px;
 }
@@ -389,8 +382,9 @@ main {
 
 .valores-grid {
     display: flex;
+    flex-wrap: wrap; 
     gap: 30px;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0 20px;
     max-width: 1200px;
     margin: 0 auto;
@@ -401,39 +395,40 @@ main {
     color: var(--white);
     padding: 30px;
     border-radius: 8px;
-    border-top: 5px solid transparent;
     flex: 1 1 300px;
     min-width: 280px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-top: 5px solid transparent; 
+    border-top: 5px solid transparent;
 }
 
 .valor-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
     border-top-color: var(--primary);
 }
 
 .valor-card img {
-    object-fit: cover;
-    width: 260px;
-    height: auto;
-    margin-bottom: 20px;
+    width: 80px; 
+    height: 80px;
+    object-fit: contain; 
+    margin-bottom: 15px;
+    opacity: 0.8;
 }
 
 .valor-card h3 {
-    font-size: 1.5em;
-    color: var(--primary);
+    font-size: 1.6em;
+    color: var(--primary); 
     margin-bottom: 15px;
 }
 
 .valor-card p {
     font-size: 1em;
     line-height: 1.6;
+    color: #ccc;
 }
 
-.quiz-section {
+#quiz-section {
     background-color: var(--black);
     padding: 80px 0;
 }
@@ -447,7 +442,7 @@ main {
     margin: 0 auto;
 }
 
-.quiz-section img {
+#quiz-section img {
     width: 100%;
     max-width: 400px;
     height: auto;
