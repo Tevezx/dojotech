@@ -1,0 +1,19 @@
+:root {
+    --main: #413233; 
+    --primary: #C0353A; 
+    --secondary: #6B4143; 
+    --terciaria: #332C2C;
+    --black: #000000;
+    --white: #FFFFFF;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'poppins', sans-serif;
+}
+
+main{
+    background-color: var(--black);
+}
+
