@@ -21,6 +21,7 @@ main {
     color: var(--white);
     display: flex;
     justify-content: flex-start;
+    flex-direction: row-reverse;
     align-items: center;
     flex-wrap: nowrap; 
     gap: 50px; 
@@ -36,7 +37,7 @@ main img {
     width: 100%;
     max-width: 50%;
     height: auto;
-    padding: 5px;
+    padding: 5px 20px;
     background-color: var(--black);
     border-radius: 10px;
     margin: 0 auto;
@@ -56,11 +57,11 @@ main img {
     font-size: 1em;
 }
 
-#cadastroForm {
+#loginForm {
     width: 100%;
 }
 
-.container > .btn-cadastrar {
+.container > .btn-login {
     margin-left: 0;
 }
 
@@ -94,7 +95,7 @@ main img {
     outline: none;
 }
 
-.btn-cadastrar {
+.btn-login {
     width: 100%;
     max-width: 400px;
     background-color: var(--primary);
@@ -110,11 +111,11 @@ main img {
     margin: 0 auto; 
 }
 
-.btn-cadastrar:hover {
+.btn-login:hover {
     background-color: var(--secondary);
 }
 
-.container .titulo-cadastro {
+.container .titulo-login {
     color: var(--primary);
     text-align: center;
     margin-bottom: 5px;
@@ -135,21 +136,21 @@ main img {
     color: var(--primary);
 }
 
-.link-login {
+.link-cadastro {
     text-align: center;
     margin-top: 20px;
     font-size: 0.95em;
     color: #ccc;
 }
 
-.link-login a {
+.link-cadastro a {
     color: var(--primary);
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s;
 }
 
-.link-login a:hover {
+.link-cadastro a:hover {
     color: var(--white);
 }
 
