@@ -39,7 +39,7 @@
                         <button class="btn-login" type="button" onclick="entrar()">Login</button>
                     </form>
                     <p class="link-cadastro">
-                        Não possui uma conta? <a href="/public/cadastro.html">Cadastre-se</a>
+                        Não possui uma conta? <a href="cadastro.html">Cadastre-se</a>
                     </p>
         </div>
     </main>
@@ -52,7 +52,7 @@
         var senhaVar = senha_input.value;
 
         if (email_input.value == '' || !emailVar.includes('@') || !emailVar.includes('.')) {
-            erroEmail.innerHTML = 'Insira um e-mail válido.';
+            erro_email.innerHTML = 'Insira um e-mail válido.';
         }
         if (senha_input.value == '') {
             erro_senha.innerHTML = 'Preencha o campo senha.';
