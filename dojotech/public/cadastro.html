@@ -8,7 +8,7 @@
     <title>DojoTech | Cadastro</title>
 
     <link rel="stylesheet" href="./css/cadastro.css">
-    <link rel="icon" href="../public/assets/imgs/logo.png">
+    <link rel="icon" href="./assets/imgs/logo.png">
     <link
         href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
@@ -16,41 +16,138 @@
 
 <body>
     <main>
-        <img src="../public/assets/imgs/cadastro.png" alt="Imagem | Cadastro">
+        <img src="./assets/imgs/cadastro.png" alt="Imagem | Cadastro">
         <div class="container">
             <a href="index.html" class="link-voltar-home">
-                < Voltar para a Home 
-            </a>
+                < Voltar para a Home </a>
                     <h2 class="titulo-cadastro">Crie sua Conta DojoTech</h2>
                     <p class="subtitulo">Cadastre-se para acessar o quiz e o painel de evolução.</p>
 
                     <form id="cadastroForm">
                         <div class="input-grupo">
                             <label for="nome">Nome Completo</label>
-                            <input type="text" id="nome" name="nome" placeholder="Digite seu nome:">
+                            <input type="text" id="nome_input" name="nome" placeholder="Digite seu nome:">
                         </div>
 
                         <div class="input-grupo">
                             <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com">
+                            <input type="email" id="email_input" name="email" placeholder="seuemail@exemplo.com">
                         </div>
 
                         <div class="input-grupo">
                             <label for="senha">Senha</label>
-                            <input type="password" id="senha" name="senha" placeholder="Digite sua senha:">
+                            <input type="password" id="senha_input" name="senha" placeholder="Digite sua senha:">
                         </div>
 
                         <div class="input-grupo">
                             <label for="confirmar-senha">Confirmar a Senha</label>
-                            <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Digite novamente:">
+                            <input type="password" id="confirmacao_senha_input" name="confirmar-senha"
+                                placeholder="Digite novamente:">
                         </div>
-                        <button class="btn-cadastrar">Cadastrar</button>
+                        <div id="cardErro">
+                            <p class="mensagem_erro"></p>
+                        </div>
+                        <button class="btn-cadastrar" type="button" onclick="cadastrar()">Cadastrar</button>
                     </form>
                     <p class="link-login">
                         Já tem uma conta? <a href="login.html">Faça Login</a>
                     </p>
         </div>
+        <div id="div_erros_login"></div>
     </main>
 </body>
+<script>
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == ""
+    ) {
+
+
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    if(nomeVar.length < 1){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "(Nome menor que 1 caractere)";
+      finalizarAguardar();
+      return false;
+    }if(!emailVar.includes('@')){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "(Email deve conter @)";
+      finalizarAguardar();
+      return false;
+    }if(senhaVar.length <= 6){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "(Senha deve ter no mínimo 6 caracteres)";
+      finalizarAguardar();
+      return false;
+    }else{
+      setInterval(sumirMensagem, 5000);
+    }
+
+    // Verificando se o código de ativação é de alguma empresa cadastrada
+
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+    }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>
+</script>
 
 </html>
