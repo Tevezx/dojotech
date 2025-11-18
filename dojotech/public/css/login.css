@@ -154,3 +154,7 @@ main img {
     color: var(--white);
 }
 
+#erro_senha, #erro_email{
+    color: var(--primary);
+    font-size: 0.8em;
+}
