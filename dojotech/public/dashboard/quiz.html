@@ -14,7 +14,7 @@
 </head>
 
 <body>
-     <header class="cabecalho">
+    <header class="cabecalho">
         <div class="cabecalho-esquerda">
             <div class="logo-area">
                 DojoTech
@@ -28,7 +28,7 @@
             </nav>
         </div>
     </header>
-    <main>
+    <main onload="onloadEsconder()">
         <div class="quiz-container">
             <h1>Avaliação de Perfil Técnico em Hapkido</h1>
             <p>Este quiz não tem respostas certas ou erradas. Responda com a opção que melhor reflete sua preferência
@@ -38,170 +38,236 @@
                 <button id="inicio-quiz-btn" type="button" onclick="iniciar()">Iniciar Avaliação de Perfil</button>
             </div>
 
+            <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
+                <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
+                    <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
+                    <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
+                </div>
+                <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
+                    <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
+                        <span id="spanPontuacaoFinal">***</span>
+                    </span>
+                    <span id="msgFinal" class="width-fit-content">***</span>
+                </div>
+            </div>
+
             <form id="hapkidoquiz" style="display: none;">
                 <div class="questao-block">
-                    <p class="questao-numero">1.</p>
-                    <p class="questao-text">Em uma luta, qual ferramenta você usaria primeiro para manter o oponente
-                        afastado?</p>
+                    <p class="questao-numero"></p>
+                    <p class="questao-text"></p>
                     <div class="opcao">
-                        <label><input type="radio" name="q1" value="PES"> Um chute lateral rápido e potente (Yop
-                            Chagi).</label>
-                        <label><input type="radio" name="q1" value="MAOS"> Uma sequência de socos diretos para ganhar
-                            tempo.</label>
-                        <label><input type="radio" name="q1" value="CONTROLE"> Um desarme imediato ao se
-                            aproximar.</label>
-                        <label><input type="radio" name="q1" value="QUEDAS"> Um movimento de esquiva seguido de uma
-                            queda controlada.</label>
+                        <div class="opcao">
+                            <label><input type="radio" name="q2" value="CONTROLE"></label>
+                            <label><input type="radio" name="q2" value="MAOS"></label>
+                            <label><input type="radio" name="q2" value="PES"></label>
+                            <label><input type="radio" name="q2" value="QUEDAS"></label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="questao-block">
-                    <p class="questao-numero">2.</p>
-                    <p class="questao-text">Se for agarrado por trás, qual sua reação primária?</p>
-                    <div class="opcao">
-                        <label><input type="radio" name="q2" value="CONTROLE"> Girar e aplicar uma chave articular no
-                            pulso ou cotovelo.</label>
-                        <label><input type="radio" name="q2" value="MAOS"> Cotoveladas e golpes de palma para pontos de
-                            pressão.</label>
-                        <label><input type="radio" name="q2" value="PES"> Usar uma varredura de perna para
-                            desequilibrar.</label>
-                        <label><input type="radio" name="q2" value="QUEDAS"> Soltar o corpo em uma queda controlada para
-                            criar espaço e escapar.</label>
+                    <div class="questao-block">
+                        <p class="questao-numero"></p>
+                        <p class="questao-text"></p>
+                        <div class="opcao">
+                            <label><input type="radio" name="q2" value="CONTROLE"></label>
+                            <label><input type="radio" name="q2" value="MAOS"></label>
+                            <label><input type="radio" name="q2" value="PES"></label>
+                            <label><input type="radio" name="q2" value="QUEDAS"></label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="questao-block">
-                    <p class="questao-numero">3.</p>
-                    <p class="questao-text">Qual tipo de treino você considera mais crucial para sua evolução no
-                        Hapkido?</p>
-                    <div class="opcao">
-                        <label><input type="radio" name="q3" value="PES"> Aumentar a altura e a velocidade dos chutes
-                            (Jok Sul).</label>
-                        <label><input type="radio" name="q3" value="QUEDAS"> Praticar diferentes tipos de quedas para
-                            absorver qualquer impacto (Nak Bop).</label>
-                        <label><input type="radio" name="q3" value="CONTROLE"> Refinar o domínio das chaves e torções
-                            articulares (Kwan Jeol Sul).</label>
-                        <label><input type="radio" name="q3" value="MAOS"> Melhorar a precisão e potência dos socos e
-                            golpes de mão aberta.</label>
+                    <div class="questao-block">
+                        <p class="questao-numero"></p>
+                        <p class="questao-text"></p>
+                        <div class="opcao">
+                            <label><input type="radio" name="q3" value="PES"></label>
+                            <label><input type="radio" name="q3" value="QUEDAS"></label>
+                            <label><input type="radio" name="q3" value="CONTROLE"></label>
+                            <label><input type="radio" name="q3" value="MAOS"></label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="questao-block">
-                    <p class="questao-numero">4.</p>
-                    <p class="questao-text">O oponente avança com força total. Sua primeira prioridade é:</p>
-                    <div class="opcao">
-                        <label><input type="radio" name="q4" value="MAOS"> Fazer um bloqueio firme e contra-atacar com
-                            um golpe de mão.</label>
-                        <label><input type="radio" name="q4" value="CONTROLE"> Desviar o ataque e imediatamente agarrar
-                            o braço para projetar ou chavear.</label>
-                        <label><input type="radio" name="q4" value="PES"> Mover-se lateralmente e responder com um chute
-                            giratório.</label>
-                        <label><input type="radio" name="q4" value="QUEDAS"> Ceder ao impacto e usar o movimento para
-                            girar a situação ao seu favor.</label>
+                    <div class="questao-block">
+                        <p class="questao-numero"></p>
+                        <p class="questao-text"></p>
+                        <div class="opcao">
+                            <label><input type="radio" name="q4" value="MAOS"></label>
+                            <label><input type="radio" name="q4" value="CONTROLE"></label>
+                            <label><input type="radio" name="q4" value="PES"></label>
+                            <label><input type="radio" name="q4" value="QUEDAS"></label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="questao-block">
-                    <p class="questao-numero">5.</p>
-                    <p class="questao-text">Qual elemento do Hapkido você mais admira em um mestre?</p>
-                    <div class="opcao">
-                        <label><input type="radio" name="q5" value="PES"> A leveza e o equilíbrio ao executar sequências
-                            complexas de chutes.</label>
-                        <label><input type="radio" name="q5" value="CONTROLE"> A facilidade em neutralizar e dominar
-                            adversários de maior porte.</label>
-                        <label><input type="radio" name="q5" value="MAOS"> A velocidade e precisão dos golpes de mão em
-                            curta distância.</label>
-                        <label><input type="radio" name="q5" value="QUEDAS"> A capacidade de cair e se levantar
-                            instantaneamente, sem danos.</label>
+                    <div class="questao-block">
+                        <p class="questao-numero"></p>
+                        <p class="questao-text"></p>
+                        <div class="opcao">
+                            <label><input type="radio" name="q5" value="PES"></label>
+                            <label><input type="radio" name="q5" value="CONTROLE"></label>
+                            <label><input type="radio" name="q5" value="MAOS"></label>
+                            <label><input type="radio" name="q5" value="QUEDAS"></label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="questao-block">
-                    <p class="questao-numero">6.</p>
-                    <p class="questao-text">Lidando com múltiplos atacantes, qual tática você priorizaria?</p>
-                    <div class="opcao">
-                        <label><input type="radio" name="q6" value="QUEDAS"> Usar o primeiro atacante como escudo e se
-                            mover rapidamente no solo.</label>
-                        <label><input type="radio" name="q6" value="PES"> Manter a distância usando chutes de alcance
-                            longo.</label>
-                        <label><input type="radio" name="q6" value="CONTROLE"> Desequilibrar um atacante e usar sua
-                            projeção para acertar outro.</label>
-                        <label><input type="radio" name="q6" value="MAOS"> Atacar rapidamente os pontos fracos do
-                            primeiro para neutralizá-lo logo.</label>
+                    <div class="questao-block">
+                        <p class="questao-numero"></p>
+                        <p class="questao-text"></p>
+                        <div class="opcao">
+                            <label><input type="radio" name="q6" value="QUEDAS"></label>
+                            <label><input type="radio" name="q6" value="PES"></label>
+                            <label><input type="radio" name="q6" value="CONTROLE"></label>
+                            <label><input type="radio" name="q6" value="MAOS"></label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="questao-block">
-                    <p class="questao-numero">7.</p>
-                    <p class="questao-text">Qual é a sua distância de combate mais confortável?</p>
-                    <div class="opcao">
-                        <label><input type="radio" name="q7" value="PES"> Longa (permitindo chutes).</label>
-                        <label><input type="radio" name="q7" value="MAOS"> Média (permitindo socos e bloqueios).</label>
-                        <label><input type="radio" name="q7" value="CONTROLE"> Curta (permitindo agarramentos e
-                            chaves).</label>
-                        <label><input type="radio" name="q7" value="QUEDAS"> Solo (onde o controle e as chaves são
-                            dominantes).</label>
+                    <div class="questao-block">
+                        <p class="questao-numero"></p>
+                        <p class="questao-text"></p>
+                        <div class="opcao">
+                            <label><input type="radio" name="q7" value="PES"></label>
+                            <label><input type="radio" name="q7" value="MAOS"></label>
+                            <label><input type="radio" name="q7" value="CONTROLE"></label>
+                            <label><input type="radio" name="q7" value="QUEDAS"></label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="questao-block">
-                    <p class="questao-numero">8.</p>
-                    <p class="questao-text">Quando o oponente está em desvantagem, como você finaliza a técnica?</p>
-                    <div class="opcao">
-                        <label><input type="radio" name="q8" value="MAOS"> Com um golpe de mão ou soco preciso para
-                            encerrar rapidamente o confronto.</label>
-                        <label><input type="radio" name="q8" value="PES"> Com um chute finalizador após o
-                            desequilíbrio.</label>
-                        <label><input type="radio" name="q8" value="CONTROLE"> Com uma imobilização ou chave de
-                            finalização até que ele desista.</label>
-                        <label><input type="radio" name="q8" value="QUEDAS"> Com uma queda limpa e poderosa, deixando o
-                            oponente incapaz de reagir.</label>
+                    <div class="questao-block">
+                        <p class="questao-numero"></p>
+                        <p class="questao-text"></p>
+                        <div class="opcao">
+                            <label><input type="radio" name="q8" value="MAOS"></label>
+                            <label><input type="radio" name="q8" value="PES"></label>
+                            <label><input type="radio" name="q8" value="CONTROLE"></label>
+                            <label><input type="radio" name="q8" value="QUEDAS"></label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="questao-block">
-                    <p class="questao-numero">9.</p>
-                    <p class="questao-text">Se o oponente está com uma faca, qual princípio você aplicaria primeiro?</p>
-                    <div class="opcao">
-                        <label><input type="radio" name="q9" value="PES"> Distância máxima e uso de chutes para desarmar
-                            o objeto.</label>
-                        <label><input type="radio" name="q9" value="QUEDAS"> Entrar e projetar o oponente para longe da
-                            arma.</label>
-                        <label><input type="radio" name="q9" value="CONTROLE"> Desviar o ataque e controlar o pulso para
-                            desarmar com uma chave.</label>
-                        <label><input type="radio" name="q9" value="MAOS"> Bloqueio rápido e golpe de pressão no braço
-                            armado.</label>
+                    <div class="questao-block">
+                        <p class="questao-numero"></p>
+                        <p class="questao-text"></p>
+                        <div class="opcao">
+                            <label><input type="radio" name="q9" value="PES"></label>
+                            <label><input type="radio" name="q9" value="QUEDAS"></label>
+                            <label><input type="radio" name="q9" value="CONTROLE"></label>
+                            <label><input type="radio" name="q9" value="MAOS"></label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="questao-block">
-                    <p class="questao-numero">10.</p>
-                    <p class="questao-text">Qual atributo é a sua maior arma em um confronto real?</p>
-                    <div class="opcao">
-                        <label><input type="radio" name="q10" value="CONTROLE"> Minha habilidade de transformar o ataque
-                            do oponente em meu controle.</label>
-                        <label><input type="radio" name="q10" value="PES"> Minha agilidade e capacidade de atacar de
-                            ângulos inesperados.</label>
-                        <label><input type="radio" name="q10" value="MAOS"> Minha força de impacto e velocidade de
-                            reação com as mãos.</label>
-                        <label><input type="radio" name="q10" value="QUEDAS"> Minha adaptabilidade e a fluidez para me
-                            levantar após qualquer situação.</label>
+                    <div class="questao-block">
+                        <p class="questao-numero"></p>
+                        <p class="questao-text"></p>
+                        <div class="opcao">
+                            <label><input type="radio" name="q10" value="CONTROLE"></label>
+                            <label><input type="radio" name="q10" value="PES"></label>
+                            <label><input type="radio" name="q10" value="MAOS"></label>
+                            <label><input type="radio" name="q10" value="QUEDAS"></label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="botao-area">
-                    <button type="submit" id="botao-quiz">Finalizar e Ver Perfil Técnico</button>
-                    <div id="resultado_mensagem"></div>
-                </div>
+                    <div class="botao-area">
+                        <button type="submit" id="botao-quiz">Finalizar e Ver Perfil Técnico</button>
+                        <div id="resultado_mensagem"></div>
+                    </div>
 
             </form>
         </div>
     </main>
 </body>
 <script>
-    function iniciar(){
-       document.getElementById('#hapkidoquiz');
-       hapkidoquiz.style.display = 'block'; 
+const questoes = [
+        {
+            pergunta: "Em uma luta, qual ferramenta você usaria primeiro para manter o oponente afastado?",
+            alternativaA: "Chutes de longo alcance (PES)",
+            alternativaB: "Soco e bloqueio para criar distância (MAOS)",
+            alternativaC: "Agarramento para controle e queda (CONTROLE)",
+            alternativaD: "Mover-se para evitar e buscar um takedown (QUEDAS)",
+            alternativaCorreta: "alternativaA" 
+        },
+
+        {
+            pergunta: "Se for agarrado por trás, qual sua reação primária?",
+            alternativaA: "Realizar uma queda ou projeção (QUEDAS)",
+            alternativaB: "Usar um stomp ou chute lateral (PES)",
+            alternativaC: "Aplicar uma chave de articulação ou ponto de pressão (CONTROLE)",
+            alternativaD: "Golpear ou usar cotoveladas para liberar a pegada (MAOS)",
+            alternativaCorreta: "alternativaD"
+        },
+
+        {
+            pergunta: "Qual tipo de treino você considera mais crucial para sua evolução no Hapkido?",
+            alternativaA: "Treino de solo e controle de imobilização (CONTROLE)",
+            alternativaB: "Treino de esquivas e timing de golpe (MAOS)",
+            alternativaC: "Treino de flexibilidade e chutes acrobáticos (PES)",
+            alternativaD: "Treino de quedas e rolamentos seguros (QUEDAS)",
+            alternativaCorreta: "alternativaD"
+        },
+
+        {
+            pergunta: "O oponente avança com força total. Sua primeira prioridade é:",
+            alternativaA: "Entrar na linha de ataque para derrubá-lo (QUEDAS)",
+            alternativaB: "Interceptar o avanço com um chute frontal (PES)",
+            alternativaC: "Usar a força dele contra ele com uma técnica de articulação (CONTROLE)",
+            alternativaD: "Golpear para interromper o avanço e criar uma abertura (MAOS)",
+            alternativaCorreta: "alternativaD"
+        },
+
+        {
+            pergunta: "Qual elemento do Hapkido você mais admira em um mestre?",
+            alternativaA: "A capacidade de derrubar um adversário com mínimo esforço (QUEDAS)",
+            alternativaB: "A precisão e potência dos golpes de mão (MAOS)",
+            alternativaC: "O domínio e a aplicação de chaves de pulso e cotovelo (CONTROLE)",
+            alternativaD: "A variedade e a altura dos chutes (PES)",
+            alternativaCorreta: "alternativaD"
+        },
+
+        {
+            pergunta: "Lidando com múltiplos atacantes, qual tática você priorizaria?",
+            alternativaA: "Manter a distância usando chutes para afastar (PES)",
+            alternativaB: "Mover-se constantemente, usando quedas para desorganizar o grupo (QUEDAS)",
+            alternativaC: "Usar combinações rápidas de soco e cotovelo (MAOS)",
+            alternativaD: "Controlar o primeiro atacante para usá-lo como escudo (CONTROLE)",
+            alternativaCorreta: "alternativaD"
+        },
+
+        {
+            pergunta: "Qual é a sua distância de combate mais confortável?",
+            alternativaA: "Longo alcance, usando a perna (PES)",
+            alternativaB: "Médio alcance, para golpes de mão e corpo-a-corpo (MAOS)",
+            alternativaC: "Curto alcance, corpo-a-corpo, para chaves e estrangulamentos (CONTROLE)",
+            alternativaD: "Distância de entrada e saída rápida para projeções (QUEDAS)",
+            alternativaCorreta: "alternativaD"
+        },
+
+        {
+            pergunta: "Quando o oponente está em desvantagem, como você finaliza a técnica?",
+            alternativaA: "Com um golpe finalizador no corpo ou cabeça (MAOS)",
+            alternativaB: "Com uma queda forte no chão (QUEDAS)",
+            alternativaC: "Com uma imobilização ou chave de finalização (CONTROLE)",
+            alternativaD: "Com uma sequência de chutes rápidos (PES)",
+            alternativaCorreta: "alternativaD"
+        },
+
+        {
+            pergunta: "Se o oponente está com uma faca, qual princípio você aplicaria primeiro?",
+            alternativaA: "Desarmar com uma chave de pulso complexa (CONTROLE)",
+            alternativaB: "Chutar o braço/mão que segura a arma (PES)",
+            alternativaC: "Evitar o ataque e usar o momentum para uma queda (QUEDAS)",
+            alternativaD: "Golpear rapidamente para atordoar e desarmar (MAOS)",
+            alternativaCorreta: "alternativaD"
+        },
+
+        {
+            pergunta: "Qual atributo é a sua maior arma em um confronto real?",
+            alternativaA: "Minha capacidade de adaptar-me à força do agressor (CONTROLE)",
+            alternativaB: "Minha agilidade e poder de chute (PES)",
+            alternativaC: "Minha velocidade e precisão de soco (MAOS)",
+            alternativaD: "Meu equilíbrio e capacidade de projetar o oponente (QUEDAS)",
+            alternativaCorreta: "alternativaD"
+        },
+    ]
+
+    function onloadEsconder(){
+        document.getElementById('pontuacao').style.display = "none";
     }
 </script>
+
 </html>
