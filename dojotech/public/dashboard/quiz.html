@@ -35,7 +35,7 @@
                 instintiva em combate. O resultado indicará suas áreas de força e fraqueza no Hapkido.</p>
 
             <div id="quiz-inicio" style="text-align: center; margin-top: 40px;">
-                <button id="inicio-quiz-btn" onclick="iniciar()">Iniciar Avaliação de Perfil</button>
+                <button id="inicio-quiz-btn" type="button" onclick="iniciar()">Iniciar Avaliação de Perfil</button>
             </div>
 
             <form id="hapkidoquiz" style="display: none;">
@@ -200,7 +200,8 @@
 </body>
 <script>
     function iniciar(){
-        
+       document.getElementById('#hapkidoquiz');
+       hapkidoquiz.style.display = 'block'; 
     }
 </script>
 </html>

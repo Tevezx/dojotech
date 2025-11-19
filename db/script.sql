@@ -21,12 +21,9 @@ idQuiz INT PRIMARY KEY AUTO_INCREMENT
 );
 
 CREATE TABLE tentativas(
-idTentativa INT AUTO_INCREMENT,
-usuarioId INT NOT NULL,
-quizId INT NOT NULL,
-data_tentativa DATETIME NOT NULL,
-pontuacao_total INT NULL,
-PRIMARY KEY(idTentativa, usuarioId, quizId),
+usuarioId INT,
+quizId INT,
+PRIMARY KEY(usuarioId, quizId),
 FOREIGN KEY (usuarioId) REFERENCES usuario(idUsuario),
 FOREIGN KEY (quizId) REFERENCES quiz(idQuiz)
 );
