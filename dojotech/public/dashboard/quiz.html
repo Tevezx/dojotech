@@ -4,269 +4,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DojoTech - Quiz de Perfil Hapkido</title>
+    <title>DojoTech - Quiz</title>
 
     <link rel="stylesheet" href="../css/quiz.css">
-    <link rel="icon" href=".assets/imgs/logo.png">
+    <link rel="icon" href="../assets/imgs/logo.png">
     <link
         href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
 
 <body>
-    <header class="cabecalho">
-        <div class="cabecalho-esquerda">
-            <div class="logo-area">
-                DojoTech
-            </div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="./dashboard.html" class="link-menu">Dashboard</a></li>
-                    <li><a href="./quiz.html" class="link-menu link-ativo">Quiz</a></li>
-                    <li><a href="../index.html" class="link-menu">Sair</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <main onload="onloadEsconder()">
-        <div class="quiz-container">
-            <h1>Avaliação de Perfil Técnico em Hapkido</h1>
-            <p>Este quiz não tem respostas certas ou erradas. Responda com a opção que melhor reflete sua preferência
-                instintiva em combate. O resultado indicará suas áreas de força e fraqueza no Hapkido.</p>
+    <main>
+        <div class="quiz-container" style="display: block;">
+            <div id="inicio-quiz">
+                <h1>Avaliação de Perfil Técnico em Hapkido</h1>
+                <p>Responda com a opção que melhor reflete sua
+                    preferência
+                    instintiva em combate. O resultado indicará suas áreas de força e fraqueza no Hapkido.</p>
 
-            <div id="quiz-inicio" style="text-align: center; margin-top: 40px;">
-                <button id="inicio-quiz-btn" type="button" onclick="iniciar()">Iniciar Avaliação de Perfil</button>
-            </div>
-
-            <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-                <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                    <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
-                    <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
-                </div>
-                <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
-                    <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                        <span id="spanPontuacaoFinal">***</span>
-                    </span>
-                    <span id="msgFinal" class="width-fit-content">***</span>
+                <div id="quiz-inicio" style="text-align: center; margin-top: 40px;">
+                    <button id="inicio-quiz-btn" type="button" onclick="iniciar()">Iniciar Avaliação de Perfil</button>
                 </div>
             </div>
 
-            <form id="hapkidoquiz" style="display: none;">
-                <div class="questao-block">
+            <form id="hapkidoquiz" style="display: block;">
+
+                <div class="questao-none" id="questao" style="display: none;">
                     <p class="questao-numero"></p>
                     <p class="questao-text"></p>
                     <div class="opcao">
-                        <div class="opcao">
-                            <label><input type="radio" name="q2" value="CONTROLE"></label>
-                            <label><input type="radio" name="q2" value="MAOS"></label>
-                            <label><input type="radio" name="q2" value="PES"></label>
-                            <label><input type="radio" name="q2" value="QUEDAS"></label>
-                        </div>
+                        <span>
+                            <input type="radio" id="primeiraOpcao" name="hapkido_option" class="radio"
+                                value="alternativaA" />
+                            <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                        </span>
+                        <span>
+                            <input type="radio" id="segundaOpcao" name="hapkido_option" class="radio"
+                                value="alternativaB" />
+                            <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                        </span>
+                        <span>
+                            <input type="radio" id="terceiraOpcao" name="hapkido_option" class="radio"
+                                value="alternativaC" />
+                            <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                        </span>
+                        <span>
+                            <input type="radio" id="quartaOpcao" name="hapkido_option" class="radio"
+                                value="alternativaD" />
+                            <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                        </span>
                     </div>
+                </div>
 
-                    <div class="questao-block">
-                        <p class="questao-numero"></p>
-                        <p class="questao-text"></p>
-                        <div class="opcao">
-                            <label><input type="radio" name="q2" value="CONTROLE"></label>
-                            <label><input type="radio" name="q2" value="MAOS"></label>
-                            <label><input type="radio" name="q2" value="PES"></label>
-                            <label><input type="radio" name="q2" value="QUEDAS"></label>
-                        </div>
-                    </div>
-
-                    <div class="questao-block">
-                        <p class="questao-numero"></p>
-                        <p class="questao-text"></p>
-                        <div class="opcao">
-                            <label><input type="radio" name="q3" value="PES"></label>
-                            <label><input type="radio" name="q3" value="QUEDAS"></label>
-                            <label><input type="radio" name="q3" value="CONTROLE"></label>
-                            <label><input type="radio" name="q3" value="MAOS"></label>
-                        </div>
-                    </div>
-
-                    <div class="questao-block">
-                        <p class="questao-numero"></p>
-                        <p class="questao-text"></p>
-                        <div class="opcao">
-                            <label><input type="radio" name="q4" value="MAOS"></label>
-                            <label><input type="radio" name="q4" value="CONTROLE"></label>
-                            <label><input type="radio" name="q4" value="PES"></label>
-                            <label><input type="radio" name="q4" value="QUEDAS"></label>
-                        </div>
-                    </div>
-
-                    <div class="questao-block">
-                        <p class="questao-numero"></p>
-                        <p class="questao-text"></p>
-                        <div class="opcao">
-                            <label><input type="radio" name="q5" value="PES"></label>
-                            <label><input type="radio" name="q5" value="CONTROLE"></label>
-                            <label><input type="radio" name="q5" value="MAOS"></label>
-                            <label><input type="radio" name="q5" value="QUEDAS"></label>
-                        </div>
-                    </div>
-
-                    <div class="questao-block">
-                        <p class="questao-numero"></p>
-                        <p class="questao-text"></p>
-                        <div class="opcao">
-                            <label><input type="radio" name="q6" value="QUEDAS"></label>
-                            <label><input type="radio" name="q6" value="PES"></label>
-                            <label><input type="radio" name="q6" value="CONTROLE"></label>
-                            <label><input type="radio" name="q6" value="MAOS"></label>
-                        </div>
-                    </div>
-
-                    <div class="questao-block">
-                        <p class="questao-numero"></p>
-                        <p class="questao-text"></p>
-                        <div class="opcao">
-                            <label><input type="radio" name="q7" value="PES"></label>
-                            <label><input type="radio" name="q7" value="MAOS"></label>
-                            <label><input type="radio" name="q7" value="CONTROLE"></label>
-                            <label><input type="radio" name="q7" value="QUEDAS"></label>
-                        </div>
-                    </div>
-
-                    <div class="questao-block">
-                        <p class="questao-numero"></p>
-                        <p class="questao-text"></p>
-                        <div class="opcao">
-                            <label><input type="radio" name="q8" value="MAOS"></label>
-                            <label><input type="radio" name="q8" value="PES"></label>
-                            <label><input type="radio" name="q8" value="CONTROLE"></label>
-                            <label><input type="radio" name="q8" value="QUEDAS"></label>
-                        </div>
-                    </div>
-
-                    <div class="questao-block">
-                        <p class="questao-numero"></p>
-                        <p class="questao-text"></p>
-                        <div class="opcao">
-                            <label><input type="radio" name="q9" value="PES"></label>
-                            <label><input type="radio" name="q9" value="QUEDAS"></label>
-                            <label><input type="radio" name="q9" value="CONTROLE"></label>
-                            <label><input type="radio" name="q9" value="MAOS"></label>
-                        </div>
-                    </div>
-
-                    <div class="questao-block">
-                        <p class="questao-numero"></p>
-                        <p class="questao-text"></p>
-                        <div class="opcao">
-                            <label><input type="radio" name="q10" value="CONTROLE"></label>
-                            <label><input type="radio" name="q10" value="PES"></label>
-                            <label><input type="radio" name="q10" value="MAOS"></label>
-                            <label><input type="radio" name="q10" value="QUEDAS"></label>
-                        </div>
-                    </div>
-
-                    <div class="botao-area">
-                        <button type="submit" id="botao-quiz">Finalizar e Ver Perfil Técnico</button>
-                        <div id="resultado_mensagem"></div>
-                    </div>
+                <div class="botao-area">
+                    <button onclick="avancar()" id="btnProx" style="display: none;">Avançar para próxima
+                        questão</button>
+                    <button type="submit" id="botao_quiz" style="display: none;" onclick="publicar()">
+                        Finalizar e Ver
+                        Perfil Técnico</button>
+                    <button type="submit" id="botao_novamente" style="display: none;" onclick="tentarNovamente()">Tentar
+                        Novamente</button>
+                    <div id="resultado_mensagem" style="display: none;"></div>
+                    <span id="spanPontuacaoFinal"></span>
+                    <span id="spanErradas"></span>
+                    <span id="spanCertas"></span>
+                </div>
 
             </form>
         </div>
     </main>
 </body>
 <script>
-const questoes = [
+
+    var usuario = sessionStorage.NOME_USUARIO;
+    var usuarioId = sessionStorage.ID_USUARIO;
+
+    const listaDeQuestoes = [
         {
             pergunta: "Em uma luta, qual ferramenta você usaria primeiro para manter o oponente afastado?",
-            alternativaA: "Chutes de longo alcance (PES)",
-            alternativaB: "Soco e bloqueio para criar distância (MAOS)",
-            alternativaC: "Agarramento para controle e queda (CONTROLE)",
-            alternativaD: "Mover-se para evitar e buscar um takedown (QUEDAS)",
-            alternativaCorreta: "alternativaA" 
+            alternativaA: "Chutes de longo alcance",
+            alternativaB: "Soco e bloqueio para criar distância",
+            alternativaC: "Agarramento para controle e queda",
+            alternativaD: "Mover-se para evitar e buscar um takedown",
+            alternativaCorreta: "alternativaA"
         },
 
         {
             pergunta: "Se for agarrado por trás, qual sua reação primária?",
-            alternativaA: "Realizar uma queda ou projeção (QUEDAS)",
-            alternativaB: "Usar um stomp ou chute lateral (PES)",
-            alternativaC: "Aplicar uma chave de articulação ou ponto de pressão (CONTROLE)",
-            alternativaD: "Golpear ou usar cotoveladas para liberar a pegada (MAOS)",
+            alternativaA: "Realizar uma queda ou projeção",
+            alternativaB: "Usar um stomp ou chute lateral",
+            alternativaC: "Aplicar uma chave de articulação ou ponto de pressão",
+            alternativaD: "Golpear ou usar cotoveladas para liberar a pegada",
             alternativaCorreta: "alternativaD"
         },
 
         {
             pergunta: "Qual tipo de treino você considera mais crucial para sua evolução no Hapkido?",
-            alternativaA: "Treino de solo e controle de imobilização (CONTROLE)",
-            alternativaB: "Treino de esquivas e timing de golpe (MAOS)",
-            alternativaC: "Treino de flexibilidade e chutes acrobáticos (PES)",
-            alternativaD: "Treino de quedas e rolamentos seguros (QUEDAS)",
+            alternativaA: "Treino de solo e controle de imobilização",
+            alternativaB: "Treino de esquivas e timing de golpe",
+            alternativaC: "Treino de flexibilidade e chutes acrobáticos",
+            alternativaD: "Treino de quedas e rolamentos seguros",
             alternativaCorreta: "alternativaD"
         },
 
         {
             pergunta: "O oponente avança com força total. Sua primeira prioridade é:",
-            alternativaA: "Entrar na linha de ataque para derrubá-lo (QUEDAS)",
-            alternativaB: "Interceptar o avanço com um chute frontal (PES)",
-            alternativaC: "Usar a força dele contra ele com uma técnica de articulação (CONTROLE)",
-            alternativaD: "Golpear para interromper o avanço e criar uma abertura (MAOS)",
+            alternativaA: "Entrar na linha de ataque para derrubá-lo",
+            alternativaB: "Interceptar o avanço com um chute frontal",
+            alternativaC: "Usar a força dele contra ele com uma técnica de articulação",
+            alternativaD: "Golpear para interromper o avanço e criar uma abertura",
             alternativaCorreta: "alternativaD"
         },
 
         {
             pergunta: "Qual elemento do Hapkido você mais admira em um mestre?",
-            alternativaA: "A capacidade de derrubar um adversário com mínimo esforço (QUEDAS)",
-            alternativaB: "A precisão e potência dos golpes de mão (MAOS)",
-            alternativaC: "O domínio e a aplicação de chaves de pulso e cotovelo (CONTROLE)",
-            alternativaD: "A variedade e a altura dos chutes (PES)",
+            alternativaA: "A capacidade de derrubar um adversário com mínimo esforço",
+            alternativaB: "A precisão e potência dos golpes de mão",
+            alternativaC: "O domínio e a aplicação de chaves de pulso e cotovelo",
+            alternativaD: "A variedade e a altura dos chutes",
             alternativaCorreta: "alternativaD"
         },
 
         {
             pergunta: "Lidando com múltiplos atacantes, qual tática você priorizaria?",
-            alternativaA: "Manter a distância usando chutes para afastar (PES)",
-            alternativaB: "Mover-se constantemente, usando quedas para desorganizar o grupo (QUEDAS)",
-            alternativaC: "Usar combinações rápidas de soco e cotovelo (MAOS)",
-            alternativaD: "Controlar o primeiro atacante para usá-lo como escudo (CONTROLE)",
+            alternativaA: "Manter a distância usando chutes para afastar",
+            alternativaB: "Mover-se constantemente, usando quedas para desorganizar o grupo",
+            alternativaC: "Usar combinações rápidas de soco e cotovelo",
+            alternativaD: "Controlar o primeiro atacante para usá-lo como escudo",
             alternativaCorreta: "alternativaD"
         },
 
         {
             pergunta: "Qual é a sua distância de combate mais confortável?",
-            alternativaA: "Longo alcance, usando a perna (PES)",
-            alternativaB: "Médio alcance, para golpes de mão e corpo-a-corpo (MAOS)",
-            alternativaC: "Curto alcance, corpo-a-corpo, para chaves e estrangulamentos (CONTROLE)",
-            alternativaD: "Distância de entrada e saída rápida para projeções (QUEDAS)",
+            alternativaA: "Longo alcance, usando a perna",
+            alternativaB: "Médio alcance, para golpes de mão e corpo-a-corpo",
+            alternativaC: "Curto alcance, corpo-a-corpo, para chaves e estrangulamentos",
+            alternativaD: "Distância de entrada e saída rápida para projeções",
             alternativaCorreta: "alternativaD"
         },
 
         {
             pergunta: "Quando o oponente está em desvantagem, como você finaliza a técnica?",
-            alternativaA: "Com um golpe finalizador no corpo ou cabeça (MAOS)",
-            alternativaB: "Com uma queda forte no chão (QUEDAS)",
-            alternativaC: "Com uma imobilização ou chave de finalização (CONTROLE)",
-            alternativaD: "Com uma sequência de chutes rápidos (PES)",
+            alternativaA: "Com um golpe finalizador no corpo ou cabeça",
+            alternativaB: "Com uma queda forte no chão",
+            alternativaC: "Com uma imobilização ou chave de finalização",
+            alternativaD: "Com uma sequência de chutes rápidos",
             alternativaCorreta: "alternativaD"
         },
 
         {
             pergunta: "Se o oponente está com uma faca, qual princípio você aplicaria primeiro?",
-            alternativaA: "Desarmar com uma chave de pulso complexa (CONTROLE)",
-            alternativaB: "Chutar o braço/mão que segura a arma (PES)",
-            alternativaC: "Evitar o ataque e usar o momentum para uma queda (QUEDAS)",
-            alternativaD: "Golpear rapidamente para atordoar e desarmar (MAOS)",
+            alternativaA: "Desarmar com uma chave de pulso complexa",
+            alternativaB: "Chutar o braço/mão que segura a arma",
+            alternativaC: "Evitar o ataque e usar o momentum para uma queda",
+            alternativaD: "Golpear rapidamente para atordoar e desarmar",
             alternativaCorreta: "alternativaD"
         },
 
         {
             pergunta: "Qual atributo é a sua maior arma em um confronto real?",
-            alternativaA: "Minha capacidade de adaptar-me à força do agressor (CONTROLE)",
-            alternativaB: "Minha agilidade e poder de chute (PES)",
-            alternativaC: "Minha velocidade e precisão de soco (MAOS)",
-            alternativaD: "Meu equilíbrio e capacidade de projetar o oponente (QUEDAS)",
+            alternativaA: "Minha capacidade de adaptar-me à força do agressor",
+            alternativaB: "Minha agilidade e poder de chute",
+            alternativaC: "Minha velocidade e precisão de soco",
+            alternativaD: "Meu equilíbrio e capacidade de projetar o oponente",
             alternativaCorreta: "alternativaD"
         },
     ]
 
-    function onloadEsconder(){
-        document.getElementById('pontuacao').style.display = "none";
+    // Variáveis globais transferidas do primeiro script
+    let numeroDaQuestaoAtual = 0
+    let pontuacaoFinal = 0
+    let tentativaIncorreta = 0
+    let certas = 0
+    let erradas = 0
+    let quantidadeDeQuestoes = listaDeQuestoes.length
+
+    // As IDs dos botões no HTML do segundo script são:
+    // btnProx, botao_quiz, botao_novamente
+
+    function iniciar() {
+        // Esconder a tela de início
+        document.getElementById('inicio-quiz').style.display = "none"
+        // Mostrar a área da questão
+        document.getElementById('questao').style.display = "block"
+        // Mostrar o botão de avançar, que será usado para publicar
+        document.getElementById('btnProx').style.display = "block"
+
+        preencherHTMLcomQuestaoAtual(0)
+
+        // No quiz de Hapkido, o botão 'Finalizar' só aparece na última questão, e 'Avançar' funciona como 'publicar'
+        document.getElementById('btnProx').innerHTML = "publicar resposta"
+        document.getElementById('botao_quiz').style.display = "none"
+        document.getElementById('botao_novamente').style.display = "none"
+    }
+
+    function preencherHTMLcomQuestaoAtual(index) {
+        habilitarAlternativas(true)
+        const questaoAtual = listaDeQuestoes[index]
+        numeroDaQuestaoAtual = index
+
+        document.querySelector(".questao-numero").innerHTML = `Questão ${Number(index) + 1} de ${quantidadeDeQuestoes}`;
+        document.querySelector(".questao-text").innerHTML = questaoAtual.pergunta;
+        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+    }
+
+    function publicar() {
+        // Função do primeiro script, mas aqui, vamos fazê-la ser chamada no onclick do botão 'Finalizar'
+        const options = document.getElementsByName("hapkido_option"); // Alterado para 'hapkido_option'
+        let hasChecked = false
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                hasChecked = true
+                break
+            }
+        }
+
+        if (!hasChecked) {
+            alert("Não há alternativas escolhidas. Escolha uma opção.")
+            return
+        }
+
+        // Desabilitar o botão de publicar/Avançar
+        document.getElementById('btnProx').disabled = true
+
+        fetch(`/quiz/publicar`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ usuarioIdServer: usuarioId, pontuacaoFinalServer: pontuacaoFinal }),
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Post realizado com sucesso pelo usuarioId de ID: " + usuario + "!");
+                finalizarJogo()
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+                finalizarJogo()
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarJogo();
+        });  
+        return false;
+    }
+
+    function habilitarAlternativas(trueOrFalse) {
+        // As IDs no segundo script são: primeiraOpcao, segundaOpcao, etc.
+        let opcaoEscolhida = trueOrFalse ? false : true
+
+        document.getElementById('primeiraOpcao').disabled = opcaoEscolhida
+        document.getElementById('segundaOpcao').disabled = opcaoEscolhida
+        document.getElementById('terceiraOpcao').disabled = opcaoEscolhida
+        document.getElementById('quartaOpcao').disabled = opcaoEscolhida
+    }
+
+    function avancar() {
+        const options = document.getElementsByName("hapkido_option");
+        let hasChecked = false
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                hasChecked = true
+                break
+            }
+        }
+        if (!hasChecked) {
+            alert("Não há alternativas escolhidas. Escolha uma opção.")
+            return false
+        }
+        checarResposta()
+
+        habilitarAlternativas(false)
+        document.getElementById('btnProx').disabled = true
+
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
+
+            setTimeout(() => {
+                limparCoresBackgroundOpcoes()
+                desmarcarRadioButtons()
+                preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+                document.getElementById('btnProx').disabled = false
+            }, 1000); // 1 segundo de delay
+        } else {
+            // Se for a última, finalizar
+            document.getElementById('btnProx').style.display = "none"
+            document.getElementById('botao_quiz').style.display = "block" // Botão "Finalizar"
+            document.getElementById('botao_quiz').disabled = false
+
+            // Remover o evento de click do publicar
+            document.getElementById('botao_quiz').onclick = publicar;
+        }
+    }
+
+    function tentarNovamente() {
+        // atualiza a página
+        window.location.reload()
+    }
+
+    function checarResposta() {
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
+        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+
+        const options = document.getElementsByName("hapkido_option"); // Alterado para 'hapkido_option'
+
+        let alternativaCorreta = null
+
+        options.forEach((option) => {
+            if (option.value === respostaQuestaoAtual) {
+                alternativaCorreta = option.labels[0].id
+            }
+        })
+
+        // verifica se resposta assinalada é correta
+        options.forEach((option) => {
+            if (option.checked === true && option.value === respostaQuestaoAtual) {
+                // No segundo script, você não tem as classes CSS text-success-with-bg, etc. 
+                // Assumindo que você terá no 'quiz.css', vou manter a lógica.
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                pontuacaoFinal++
+                certas++
+                document.getElementById("spanCertas").innerHTML = certas
+                numeroDaQuestaoAtual++
+            } else if (option.checked && option.value !== respostaQuestaoAtual) {
+                const wrongLabelId = option.labels[0].id
+
+                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                tentativaIncorreta++
+                erradas++
+                document.getElementById("spanErradas").innerHTML = erradas
+                numeroDaQuestaoAtual++
+            }
+        })
+    }
+
+    function limparCoresBackgroundOpcoes() {
+        const options = document.getElementsByName("hapkido_option"); // Alterado para 'hapkido_option'
+        options.forEach((option) => {
+            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
+            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+        })
+    }
+
+    function desmarcarRadioButtons() {
+        const options = document.getElementsByName("hapkido_option"); // Alterado para 'hapkido_option'
+        for (let i = 0; i < options.length; i++) {
+            options[i].checked = false;
+        }
+    }
+
+    function finalizarJogo() {
+        let textoParaMensagemFinal = null
+        let classComCoresParaMensagemFinal = null
+        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+
+        if (porcentagemFinalDeAcertos <= 0.3) {
+            textoParaMensagemFinal = "Parece que você tem um Perfil de Chute e Evasão. Concentre-se em Chaves e Projeções."
+            classComCoresParaMensagemFinal = "text-danger-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
+            textoParaMensagemFinal = "Seu Perfil é Equilibrado. Continue treinando para dominar todas as áreas do Hapkido!"
+            classComCoresParaMensagemFinal = "text-warning-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos >= 0.9) {
+            textoParaMensagemFinal = "Uau, seu Perfil Técnico é de Mestre! Domínio em Chute, Queda e Controle."
+            classComCoresParaMensagemFinal = "text-success-with-bg"
+        }
+
+        textoParaMensagemFinal += "<br> Você respondeu com o perfil **Chute/Queda** em " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
+
+        // O segundo script tem uma div id="resultado_mensagem" para exibir o resultado.
+        document.getElementById('resultado_mensagem').style.display = "block"
+        document.getElementById('resultado_mensagem').innerHTML = textoParaMensagemFinal
+        document.getElementById('resultado_mensagem').classList.add(classComCoresParaMensagemFinal)
+
+        document.getElementById('spanPontuacaoFinal').innerHTML = `Acertos: ${pontuacaoFinal}`
+        document.getElementById('spanCertas').innerHTML = `Certas: ${certas}`
+        document.getElementById('spanErradas').innerHTML = `Erradas: ${erradas}`
+
+        document.getElementById('questao').style.display = "none" // Esconde a última questão
+        document.getElementById('botao_quiz').style.display = "none"
+        document.getElementById('botao_novamente').style.display = "block"
     }
 </script>
 

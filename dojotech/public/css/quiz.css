@@ -27,57 +27,6 @@ body {
     min-height: 100vh;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem;
-    background-color: var(--white);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-    border-bottom-left-radius: 0.75rem;
-    border-bottom-right-radius: 0.75rem;
-    margin-bottom: 2rem;
-}
-
-.cabecalho-esquerda {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.logo-area {
-    font-size: 1.875rem;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    color: var(--terciaria);
-}
-
-.nav-menu {
-    display: flex; 
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    gap: 1.5rem;
-}
-
-.link-menu {
-    text-decoration: none;
-    color: var(--secondary);
-    transition: color 0.2s;
-    padding: 0.5rem 0;
-}
-
-.link-menu:hover {
-    color: var(--primary);
-}
-
-.link-ativo {
-    color: var(--primary);
-    font-weight: 700;
-    border-bottom: 2px solid var(--primary);
-}
-
 main {
     display: flex;
     justify-content: center;
@@ -161,7 +110,10 @@ main {
 }
 
 #inicio-quiz-btn,
-#botao-quiz {
+#botao_quiz,
+#btnProx,
+#botao-novamente,
+#botao_quiz a {
     background-color: var(--primary);
     color: var(--white);
     border: none;
@@ -174,8 +126,14 @@ main {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+#botao_quiz a {
+    text-decoration: none;
+}
+
 #inicio-quiz-btn:hover,
-#botao-quiz:hover {
+#botao-quiz:hover,
+#btnProx:hover,
+#botao-novamente:hover {
     background-color: var(--secondary);
     transform: translateY(-2px);
 }
