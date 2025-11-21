@@ -53,10 +53,6 @@
                         Já tem uma conta? <a href="login.html">Faça Login</a>
                     </p>
         </div>
-        <div id="mensagem_sucesso">
-          <p>Cadastro Realizado!</p>
-          <button><a href="login.html">Entrar</a></button>
-        </div>
     </main>
 </body>
 <script>
@@ -97,16 +93,12 @@
       setInterval(5000);
     }
 
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
@@ -116,11 +108,9 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          mensagem_sucesso.style.display = "block";
-
           setTimeout(() => {
             window.location = "login.html";
-          }, "2000");
+          }, "1000");
 
           limparFormulario();
 

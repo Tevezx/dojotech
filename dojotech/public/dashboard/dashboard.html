@@ -35,9 +35,9 @@
             <div class="kpi-grid">
 
                 <div id="kpi-pontuacao" class="kpi-card kpi-pontuacao">
-                    <p class="kpi-title">Pontuação Total</p>
+                    <p class="kpi-title" onchange="pontos()">Pontuação Total</p>
                     <div class="kpi-value">
-                        <span id="valor-pontuacao">980</span> <span class="kpi-label">pts</span>
+                        <span id="valor_pontuacao"></span> <span class="kpi-label">pts</span>
                     </div>
                     <p class="kpi-subtitle">
                         Soma dos pontos em todos os quizzes concluídos.
@@ -67,4 +67,40 @@
         </div>
     </main>
 </body>
+<script>
+    const usuarioId = sessionStorage.ID_USUARIO;
+    function pontuacaoKpi() {
+        fetch(`/dashboard/pontuacao/${usuarioId}`, {
+            method: "GET"
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json);
+                    exibirPontuacaoNaKPI(json.pontuacao);
+                });
+            } else {
+                console.error("Erro ao buscar pontuação do KPI.");
+                exibirPontuacaoNaKPI(0);
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        });
+    }
+    function exibirPontuacaoNaKPI(pontuacao){
+        const numero = document.getElementById('valor_pontuacao');
+
+        if(numero == null || pontuacao == undefined){
+            valor_pontuacao.innerHTML = `0`
+        }
+
+        if(numero){
+            numero.innerHTML = pontuacao;
+        }else{
+            console.log('Elemento KPI não encontrado!');
+        }
+    }
+
+    window.onload = pontuacaoKpi;
+</script>
+
 </html>

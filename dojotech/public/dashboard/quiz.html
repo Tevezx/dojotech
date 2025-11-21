@@ -57,17 +57,13 @@
                 </div>
 
                 <div class="botao-area">
-                    <button onclick="avancar()" id="btnProx" style="display: none;">Avançar para próxima
-                        questão</button>
-                    <button type="submit" id="botao_quiz" style="display: none;" onclick="publicar()">
-                        Finalizar e Ver
-                        Perfil Técnico</button>
-                    <button type="submit" id="botao_novamente" style="display: none;" onclick="tentarNovamente()">Tentar
-                        Novamente</button>
-                    <div id="resultado_mensagem" style="display: none;"></div>
-                    <span id="spanPontuacaoFinal"></span>
-                    <span id="spanErradas"></span>
-                    <span id="spanCertas"></span>
+                    <button onclick="avancar()" id="btnProx" style="display: none;">Avançar</button>
+                    <button type="button" id="botao_quiz" style="display: none;" onclick="publicar()">Finalizar</button>
+                    <button type="button" id="botao_novamente" style="display: none;" onclick="tentarNovamente()">Tentar Novamente</button>
+                    <div id="resultado_mensagem" style="display: none;"></div> 
+                    <span id="spanCertas" style="color: green;"></span> <br>
+                    <span id="spanErradas" style="color: red;"></span> 
+                    <button type="button" id="botao_visualizar" style="display: none;" onclick="irParaDashboard()">Visualizar dashboard</button>
                 </div>
 
             </form>
@@ -171,7 +167,6 @@
         },
     ]
 
-    // Variáveis globais transferidas do primeiro script
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
     let tentativaIncorreta = 0
@@ -179,21 +174,13 @@
     let erradas = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
 
-    // As IDs dos botões no HTML do segundo script são:
-    // btnProx, botao_quiz, botao_novamente
-
     function iniciar() {
-        // Esconder a tela de início
         document.getElementById('inicio-quiz').style.display = "none"
-        // Mostrar a área da questão
         document.getElementById('questao').style.display = "block"
-        // Mostrar o botão de avançar, que será usado para publicar
         document.getElementById('btnProx').style.display = "block"
 
         preencherHTMLcomQuestaoAtual(0)
 
-        // No quiz de Hapkido, o botão 'Finalizar' só aparece na última questão, e 'Avançar' funciona como 'publicar'
-        document.getElementById('btnProx').innerHTML = "publicar resposta"
         document.getElementById('botao_quiz').style.display = "none"
         document.getElementById('botao_novamente').style.display = "none"
     }
@@ -212,8 +199,7 @@
     }
 
     function publicar() {
-        // Função do primeiro script, mas aqui, vamos fazê-la ser chamada no onclick do botão 'Finalizar'
-        const options = document.getElementsByName("hapkido_option"); // Alterado para 'hapkido_option'
+        const options = document.getElementsByName("hapkido_option");
         let hasChecked = false
         for (let i = 0; i < options.length; i++) {
             if (options[i].checked) {
@@ -227,7 +213,6 @@
             return
         }
 
-        // Desabilitar o botão de publicar/Avançar
         document.getElementById('btnProx').disabled = true
 
         fetch(`/quiz/publicar`, {
@@ -241,7 +226,7 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuarioId de ID: " + usuario + "!");
+                window.alert("Post realizado com sucesso pelo usuario de ID: " + usuario + "!");
                 finalizarJogo()
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
@@ -257,7 +242,6 @@
     }
 
     function habilitarAlternativas(trueOrFalse) {
-        // As IDs no segundo script são: primeiraOpcao, segundaOpcao, etc.
         let opcaoEscolhida = trueOrFalse ? false : true
 
         document.getElementById('primeiraOpcao').disabled = opcaoEscolhida
@@ -291,28 +275,25 @@
                 desmarcarRadioButtons()
                 preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
                 document.getElementById('btnProx').disabled = false
-            }, 1000); // 1 segundo de delay
+            }, 1000);
         } else {
-            // Se for a última, finalizar
             document.getElementById('btnProx').style.display = "none"
-            document.getElementById('botao_quiz').style.display = "block" // Botão "Finalizar"
+            document.getElementById('botao_quiz').style.display = "block"
             document.getElementById('botao_quiz').disabled = false
 
-            // Remover o evento de click do publicar
             document.getElementById('botao_quiz').onclick = publicar;
         }
     }
 
     function tentarNovamente() {
-        // atualiza a página
         window.location.reload()
     }
 
     function checarResposta() {
-        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
-        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
+        const respostaQuestaoAtual = questaoAtual.alternativaCorreta
 
-        const options = document.getElementsByName("hapkido_option"); // Alterado para 'hapkido_option'
+        const options = document.getElementsByName("hapkido_option");
 
         let alternativaCorreta = null
 
@@ -322,15 +303,13 @@
             }
         })
 
-        // verifica se resposta assinalada é correta
         options.forEach((option) => {
             if (option.checked === true && option.value === respostaQuestaoAtual) {
-                // No segundo script, você não tem as classes CSS text-success-with-bg, etc. 
-                // Assumindo que você terá no 'quiz.css', vou manter a lógica.
+
                 document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
                 pontuacaoFinal++
                 certas++
-                document.getElementById("spanCertas").innerHTML = certas
+                document.getElementById("spanCertas").innerHTML = `Questões certas: ${certas}`
                 numeroDaQuestaoAtual++
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
                 const wrongLabelId = option.labels[0].id
@@ -339,14 +318,14 @@
                 document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
                 tentativaIncorreta++
                 erradas++
-                document.getElementById("spanErradas").innerHTML = erradas
+                document.getElementById("spanErradas").innerHTML = `Questões erradas: ${erradas}`
                 numeroDaQuestaoAtual++
             }
         })
     }
 
     function limparCoresBackgroundOpcoes() {
-        const options = document.getElementsByName("hapkido_option"); // Alterado para 'hapkido_option'
+        const options = document.getElementsByName("hapkido_option");
         options.forEach((option) => {
             document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
             document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
@@ -354,7 +333,7 @@
     }
 
     function desmarcarRadioButtons() {
-        const options = document.getElementsByName("hapkido_option"); // Alterado para 'hapkido_option'
+        const options = document.getElementsByName("hapkido_option");
         for (let i = 0; i < options.length; i++) {
             options[i].checked = false;
         }
@@ -362,36 +341,34 @@
 
     function finalizarJogo() {
         let textoParaMensagemFinal = null
-        let classComCoresParaMensagemFinal = null
         const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
         if (porcentagemFinalDeAcertos <= 0.3) {
             textoParaMensagemFinal = "Parece que você tem um Perfil de Chute e Evasão. Concentre-se em Chaves e Projeções."
-            classComCoresParaMensagemFinal = "text-danger-with-bg"
         }
         else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
             textoParaMensagemFinal = "Seu Perfil é Equilibrado. Continue treinando para dominar todas as áreas do Hapkido!"
-            classComCoresParaMensagemFinal = "text-warning-with-bg"
         }
         else if (porcentagemFinalDeAcertos >= 0.9) {
             textoParaMensagemFinal = "Uau, seu Perfil Técnico é de Mestre! Domínio em Chute, Queda e Controle."
-            classComCoresParaMensagemFinal = "text-success-with-bg"
         }
 
-        textoParaMensagemFinal += "<br> Você respondeu com o perfil **Chute/Queda** em " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
+        textoParaMensagemFinal = `Com base em suas respostas: ` + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões, motivaram sua caracteristica! Clique em <b>Visualizar Dashboard e saiba mais!</b>";
 
-        // O segundo script tem uma div id="resultado_mensagem" para exibir o resultado.
         document.getElementById('resultado_mensagem').style.display = "block"
         document.getElementById('resultado_mensagem').innerHTML = textoParaMensagemFinal
-        document.getElementById('resultado_mensagem').classList.add(classComCoresParaMensagemFinal)
 
-        document.getElementById('spanPontuacaoFinal').innerHTML = `Acertos: ${pontuacaoFinal}`
         document.getElementById('spanCertas').innerHTML = `Certas: ${certas}`
         document.getElementById('spanErradas').innerHTML = `Erradas: ${erradas}`
 
-        document.getElementById('questao').style.display = "none" // Esconde a última questão
-        document.getElementById('botao_quiz').style.display = "none"
-        document.getElementById('botao_novamente').style.display = "block"
+        document.getElementById('questao').style.display = "none";
+        document.getElementById('botao_quiz').style.display = "none";
+        document.getElementById('botao_novamente').style.display = "block";
+        document.getElementById('botao_visualizar').style.display = "block";
+
+    }
+    function irParaDashboard(){
+        window.location.href = "./dashboard.html";
     }
 </script>
 
