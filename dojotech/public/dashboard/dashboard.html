@@ -47,7 +47,7 @@
                 <div id="kpi-fraqueza" class="kpi-card kpi-fraqueza">
                     <p class="kpi-title">Maior Fraqueza</p>
                     <div class="kpi-value-secondary">
-                        <span id="valor-fraqueza">Técnicas de Imobilização</span>
+                        <span id="valor_fraqueza"></span>
                     </div>
                     <p class="kpi-subtitle">
                         Módulo onde o percentual de acerto é mais baixo (45%).
@@ -99,8 +99,37 @@
             console.log('Elemento KPI não encontrado!');
         }
     }
+    function fraquezaKpi(fraqueza){
+        fetch(`/dashboard/fraqueza/${usuarioId}`, {
+            method: "GET"
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json);
+                    exibirFraqueza(json.fraqueza);
+                });
+            } else {
+                console.error("Erro ao buscar pontuação do KPI.");
+                exibirFraqueza(0);
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        });
+    }
+    function exibirFraqueza(fraqueza){
+        const maiorFraqueza = document.getElementById('valor_fraqueza');
 
-    window.onload = pontuacaoKpi;
+        if(maiorFraqueza == undefined || maiorFraqueza == null){
+            maiorFraqueza.innerHTML = 'Sem dados de quiz';
+        }
+        if(fraqueza){
+            maiorFraqueza.innerHTML = fraqueza;
+        }else{
+            console.log("KPI não encontrado!")
+        }
+    }
+
+    window.onload = pontuacaoKpi(), fraquezaKpi();
 </script>
 
 </html>
