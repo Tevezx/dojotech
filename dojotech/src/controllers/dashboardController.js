@@ -25,10 +25,10 @@ function pontuacao(req, res) {
         );
 }
 
-function fraqueza(req, res) {
+function perfil(req, res) {
     var usuarioId = req.params.usuarioId;
 
-    dashboardModel.fraqueza(usuarioId)
+    dashboardModel.perfil(usuarioId)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -67,7 +67,7 @@ function faixa(req, res) {
             function (erro) {
                 console.log(erro);
                 console.log(
-                    "Houve um erro ao buscar a fraqueza: ",
+                    "Houve um erro ao buscar o perfil tecnico: ",
                     erro.sqlMessage
                 );
                 res.status(500).json(erro.sqlMessage);
@@ -102,7 +102,7 @@ function historico(req, res) {
 
 module.exports = {
     pontuacao,
-    fraqueza,
+    perfil,
     faixa,
     historico
 }

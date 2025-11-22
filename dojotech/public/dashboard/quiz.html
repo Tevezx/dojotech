@@ -14,6 +14,20 @@
 </head>
 
 <body>
+    <header class="cabecalho">
+        <div class="cabecalho-esquerda">
+            <div class="logo-area">
+                DojoTech
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="./dashboard.html" class="link-menu">Dashboard</a></li>
+                    <li><a href="./quiz.html" class="link-menu link-ativo">Quiz</a></li>
+                    <li><a href="../index.html" class="link-menu">Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <main>
         <div class="quiz-container" style="display: block;">
             <div id="inicio-quiz">
@@ -344,30 +358,33 @@
     function finalizarJogo() {
         var textoFaixa = null;
         var textoParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+        var porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
-        if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Parece que você tem um Perfil de Chute e Evasão. Concentre-se em Chaves e Projeções."
+        if (porcentagemFinalDeAcertos <= 0.39) {
+            textoParaMensagemFinal = "Conhecimento Básico"
         }
-        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-            textoParaMensagemFinal = "Seu Perfil é Equilibrado. Continue treinando para dominar todas as áreas do Hapkido!"
+        else if (porcentagemFinalDeAcertos > 0.39 && porcentagemFinalDeAcertos <= 0.59) {
+            textoParaMensagemFinal = "Conhecimento Funcional"
         }
-        else if (porcentagemFinalDeAcertos >= 0.9) {
-            textoParaMensagemFinal = "Uau, seu Perfil Técnico é de Mestre! Domínio em Chute, Queda e Controle."
+        else if (porcentagemFinalDeAcertos > 0.59 && porcentagemFinalDeAcertos <= 0.79) {
+            textoParaMensagemFinal = "Conhecimento Robusto"
+        }
+        else {
+            textoParaMensagemFinal = "Domínio Comprovado"
         }
 
-        if(certas >= 0 && certas <= 3){
+        if (certas >= 0 && certas <= 3) {
             textoFaixa = "Branca"
-        }else if(certas > 3 && certas <= 5){
+        } else if (certas > 3 && certas <= 5) {
             textoFaixa = "Amarela"
-        }else if(certas > 5 && certas <= 7){
+        } else if (certas > 5 && certas <= 7) {
             textoFaixa = "Azul"
-        }else if(certas > 7 && certas <= 9){
+        } else if (certas > 7 && certas <= 9) {
             textoFaixa = "Vermelha"
-        }else{
+        } else {
             textoFaixa = "Preta"
-        }        
-        
+        }
+
         fetch(`/quiz/finalizarJogo`, {
             method: "post",
             headers: {
@@ -421,8 +438,8 @@
         document.getElementById('questao').style.display = "none";
         document.getElementById('botao_quiz').style.display = "none";
         document.getElementById('botao_novamente').style.display = "block";
-        document.getElementById('botao_visualizar').style.display = "block"; 
-        
+        document.getElementById('botao_visualizar').style.display = "block";
+
 
     }
 

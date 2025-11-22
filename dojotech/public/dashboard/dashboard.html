@@ -36,22 +36,22 @@
             <div class="kpi-grid">
 
                 <div id="kpi-pontuacao" class="kpi-card kpi-pontuacao">
-                    <p class="kpi-title" onchange="pontos()">Pontuação Total</p>
+                    <p class="kpi-title" onchange="pontos()">Ùltima Pontuação</p>
                     <div class="kpi-value">
                         <span id="valor_pontuacao"></span> <span class="kpi-label">pts</span>
                     </div>
                     <p class="kpi-subtitle">
-                        Soma dos pontos em todos os quizzes concluídos.
+                        Soma dos pontos no útlimo quiz concluído.
                     </p>
                 </div>
 
-                <div id="kpi-fraqueza" class="kpi-card kpi-fraqueza">
-                    <p class="kpi-title">Maior Fraqueza</p>
+                <div id="kpi-perfil" class="kpi-card kpi-perfil">
+                    <p class="kpi-title">Perfil Técnico</p>
                     <div class="kpi-value-secondary">
-                        <span id="valor_fraqueza"></span>
+                        <span id="valor_tecnico"></span>
                     </div>
                     <p class="kpi-subtitle">
-                        Módulo onde o percentual de acerto é mais baixo (45%).
+                        Módulo onde o percentual de acerto é identificado.
                     </p>
                 </div>
 
@@ -60,13 +60,11 @@
                     <div class="kpi-value flex items-center">
                         <span id="valor_faixa"></span>
                     </div>
-                    <p class="kpi-subtitle">
-                        Próximo objetivo: Faixa Vermelha.
+                    <p id="kpi-subtitle">
                     </p>
                 </div>
-
             </div>
-            <div>
+            <div class="grafico-container">
                 <canvas id="grafico_line"></canvas>
             </div>
         </div>
@@ -95,13 +93,39 @@
                 datasets: [{
                     label: 'Pontuação por Quiz',
                     data: pontuacoes,
-                    borderWidth: 1
+                    borderColor: '#332C2C',
+                    backgroundColor: 'rgba(255, 193, 7, 0.2)',
+                    tension: 0.4,
+                    pointRadius: 5
                 }]
             },
             options: {
+                responsive: true,
+                plugins:{
+                    title:{
+                        display: true,
+                        Text: 'Histórico de Pontuaões nos Quizzes',
+                        font:{
+                            size:18
+                        }
+                    },
+                    legend:{
+                        display: false
+                    }
+                },
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        title:{
+                            display: true,
+                            text: 'Pontuação'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Data e Hora do Quiz'
+                        }
                     }
                 }
             }
@@ -138,31 +162,31 @@
             console.log('Elemento KPI não encontrado!');
         }
     }
-    function fraquezaKpi(fraqueza) {
-        fetch(`/dashboard/fraqueza/${usuarioId}`, {
+    function perfilKpi(perfil) {
+        fetch(`/dashboard/perfil/${usuarioId}`, {
             method: "GET"
         }).then(function (resposta) {
             if (resposta.ok) {
                 resposta.json().then(json => {
                     console.log(json);
-                    exibirFraqueza(json.fraqueza);
+                    exibirPerfil(json.perfil);
                 });
             } else {
                 console.error("Erro ao buscar pontuação do KPI.");
-                exibirFraqueza("Sem fraqueza");
+                exibirPerfil("Sem perfil");
             }
         }).catch(function (erro) {
             console.log(erro);
         });
     }
-    function exibirFraqueza(fraqueza) {
-        const maiorFraqueza = document.getElementById('valor_fraqueza');
+    function exibirPerfil(perfil) {
+        const maiorperfil = document.getElementById('valor_tecnico');
 
-        if (maiorFraqueza == undefined || maiorFraqueza == null) {
-            maiorFraqueza.innerHTML = 'Sem dados de quiz';
+        if (maiorperfil == undefined || maiorperfil == null) {
+            maiorperfil.innerHTML = 'Sem dados de quiz';
         }
-        if (fraqueza) {
-            maiorFraqueza.innerHTML = fraqueza;
+        if (perfil) {
+            maiorperfil.innerHTML = perfil;
         } else {
             console.log("KPI não encontrado!")
         }
@@ -186,6 +210,30 @@
     }
     function exibirFaixa(faixa) {
         const valorFaixa = document.getElementById('valor_faixa');
+        const kpiFaixa = document.getElementById('kpi-faixa');
+        const proximaFaixa = document.getElementById('kpi-subtitle');
+        
+        if(faixa == "Branca"){
+            kpiFaixa.style.borderTopColor = 'white';
+            proximaFaixa.innerHTML = "Próxima faixa: Amarela";
+        }else if(faixa == "Amarela"){
+            kpiFaixa.style.borderTopColor = 'yellow';
+            proximaFaixa.innerHTML = "Próxima faixa: Azul";
+        }else if(faixa == "Azul"){
+            kpiFaixa.style.borderTopColor = 'blue';
+            proximaFaixa.innerHTML = "Próxima faixa: Vermelha";
+        }else if(faixa == "Vermelha"){
+            kpiFaixa.style.borderTopColor = 'red';
+            proximaFaixa.innerHTML = "Próxima faixa: Preta";
+        }else if(faixa == "Preta"){
+            kpiFaixa.style.borderTopColor = 'black';
+            proximaFaixa.innerHTML = "";
+        }else{
+            kpiFaixa.style.borderTopColor = 'white';
+            proximaFaixa.innerHTML = "Próxima faixa Amarela";
+        }
+
+
 
         if (valorFaixa == undefined || valorFaixa == null) {
             valorFaixa.innerHTML = 'Sem dados de quiz';
@@ -216,7 +264,7 @@
 
     function dashboard() {
         pontuacaoKpi();
-        fraquezaKpi();
+        perfilKpi();
         faixaKpi();
         historicoKpi();
     }

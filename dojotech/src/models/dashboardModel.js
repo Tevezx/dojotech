@@ -13,11 +13,11 @@ function pontuacao(usuarioId) {
     return database.executar(instrucaoSql);
 }
 
-function fraqueza(usuarioId) {
+function perfil(usuarioId) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pontuacao()", usuarioId);
     var instrucaoSql = `
         SELECT 
-            mensagem AS fraqueza
+            mensagem AS perfil
         FROM registro_quiz 
             WHERE usuarioId = ${usuarioId}
                 ORDER BY idRegistro DESC LIMIT 1;
@@ -54,7 +54,7 @@ function historico(usuarioId) {
 
 module.exports = {
     pontuacao,
-    fraqueza,
+    perfil,
     faixa,
     historico
 }
