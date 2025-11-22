@@ -59,11 +59,13 @@
                 <div class="botao-area">
                     <button onclick="avancar()" id="btnProx" style="display: none;">Avançar</button>
                     <button type="button" id="botao_quiz" style="display: none;" onclick="publicar()">Finalizar</button>
-                    <button type="button" id="botao_novamente" style="display: none;" onclick="tentarNovamente()">Tentar Novamente</button>
-                    <div id="resultado_mensagem" style="display: none;"></div> 
+                    <button type="button" id="botao_novamente" style="display: none;" onclick="tentarNovamente()">Tentar
+                        Novamente</button>
+                    <div id="resultado_mensagem" style="display: none;"></div>
                     <span id="spanCertas" style="color: green;"></span> <br>
-                    <span id="spanErradas" style="color: red;"></span> 
-                    <button type="button" id="botao_visualizar" style="display: none;" onclick="irParaDashboard()">Visualizar dashboard</button>
+                    <span id="spanErradas" style="color: red;"></span>
+                    <button type="button" id="botao_visualizar" style="display: none;"
+                        onclick="irParaDashboard()">Visualizar dashboard</button>
                 </div>
 
             </form>
@@ -226,10 +228,10 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + usuario + "!");
+                console.log("Post realizado com sucesso pelo usuario de ID: " + usuario + "!");
                 finalizarJogo()
             } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
+                console.log("Deu 404!");
                 finalizarJogo()
             } else {
                 throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
@@ -237,7 +239,7 @@
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
             finalizarJogo();
-        });  
+        });
         return false;
     }
 
@@ -340,7 +342,7 @@
     }
 
     function finalizarJogo() {
-        let textoParaMensagemFinal = null
+        var textoParaMensagemFinal = null
         const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
         if (porcentagemFinalDeAcertos <= 0.3) {
@@ -353,10 +355,12 @@
             textoParaMensagemFinal = "Uau, seu Perfil Técnico é de Mestre! Domínio em Chute, Queda e Controle."
         }
 
-        textoParaMensagemFinal = `Com base em suas respostas: ` + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões, motivaram sua caracteristica! Clique em <b>Visualizar Dashboard e saiba mais!</b>";
+
+
+        mensagemFinal = `Com base em suas respostas: ` + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões, motivaram sua caracteristica! Clique em <b>Visualizar Dashboard e saiba mais!</b>";
 
         document.getElementById('resultado_mensagem').style.display = "block"
-        document.getElementById('resultado_mensagem').innerHTML = textoParaMensagemFinal
+        document.getElementById('resultado_mensagem').innerHTML = mensagemFinal
 
         document.getElementById('spanCertas').innerHTML = `Certas: ${certas}`
         document.getElementById('spanErradas').innerHTML = `Erradas: ${erradas}`
@@ -364,10 +368,31 @@
         document.getElementById('questao').style.display = "none";
         document.getElementById('botao_quiz').style.display = "none";
         document.getElementById('botao_novamente').style.display = "block";
-        document.getElementById('botao_visualizar').style.display = "block";
+        document.getElementById('botao_visualizar').style.display = "block"; 
+        
+        fetch(`/quiz/finalizarJogo`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ usuarioIdServer: usuarioId, textoParaMensagemFinalServer: textoParaMensagemFinal }),
+        }).then(function (resposta) {
 
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                console.log("Mensagem salva com sucesso!")
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
     }
-    function irParaDashboard(){
+
+    function irParaDashboard() {
         window.location.href = "./dashboard.html";
     }
 </script>

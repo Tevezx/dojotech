@@ -7,4 +7,8 @@ router.post("/publicar", function(req, res){
     quizController.publicar(req, res);
 })
 
+router.post("/finalizarJogo", function(req, res){
+    quizController.finalizar(req, res)
+})
+
 module.exports = router;

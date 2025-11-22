@@ -6,9 +6,9 @@ function publicar(req, res) {
 
 
     if (usuarioId == undefined) {
-        res.status(403).send("O id do usuário está indefinido!"); // Restaurando a segurança
+        res.status(403).send("O id do usuário está indefinido!"); 
     } else if (pontuacao == undefined) {
-        res.status(403).send("A pontuação do usuário está indefinida!"); // Restaurando a segurança
+        res.status(403).send("A pontuação do usuário está indefinida!");
     } else {
         quizModel.publicar(usuarioId, pontuacao)
             .then(
@@ -26,6 +26,34 @@ function publicar(req, res) {
     }
 }
 
+
+function finalizar(req, res) {
+    var textoParaMensagemFinalServer = req.body.textoParaMensagemFinalServer;
+    var usuarioId = req.body.usuarioIdServer;
+
+
+    if (usuarioId == undefined) {
+        res.status(403).send("O id do usuário está indefinido!"); 
+    } else if (textoParaMensagemFinalServer == undefined) {
+        res.status(403).send("A pontuação do usuário está indefinida!");
+    } else {
+        quizModel.finalizar(usuarioId, textoParaMensagemFinalServer)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
     module.exports = {
-        publicar
+        publicar, 
+        finalizar
     }
