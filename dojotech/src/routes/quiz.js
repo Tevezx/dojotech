@@ -11,4 +11,8 @@ router.post("/finalizarJogo", function(req, res){
     quizController.finalizar(req, res)
 })
 
+router.post("/faixa", function(req, res){
+    quizController.faixa(req,res)
+})
+
 module.exports = router;

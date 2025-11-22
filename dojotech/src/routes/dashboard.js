@@ -9,6 +9,10 @@ router.get("/pontuacao/:usuarioId", function (req, res) {
 
 router.get("/fraqueza/:usuarioId", function(req, res){
     dashboardController.fraqueza(req, res);
+});
+
+router.get("/faixa/:usuarioId", function(req, res){
+    dashboardController.faixa(req, res);
 })
 
 

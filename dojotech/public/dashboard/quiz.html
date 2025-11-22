@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DojoTech - Quiz</title>
+    <title>DojoTech | Quiz</title>
 
     <link rel="stylesheet" href="../css/quiz.css">
     <link rel="icon" href="../assets/imgs/logo.png">
@@ -342,6 +342,7 @@
     }
 
     function finalizarJogo() {
+        var textoFaixa = null;
         var textoParaMensagemFinal = null
         const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
@@ -355,18 +356,17 @@
             textoParaMensagemFinal = "Uau, seu Perfil Técnico é de Mestre! Domínio em Chute, Queda e Controle."
         }
 
-        mensagemFinal = `Com base em suas respostas: ` + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões, motivaram sua caracteristica! Clique em <b>Visualizar Dashboard e saiba mais!</b>";
-
-        document.getElementById('resultado_mensagem').style.display = "block"
-        document.getElementById('resultado_mensagem').innerHTML = mensagemFinal
-
-        document.getElementById('spanCertas').innerHTML = `Certas: ${certas}`
-        document.getElementById('spanErradas').innerHTML = `Erradas: ${erradas}`
-
-        document.getElementById('questao').style.display = "none";
-        document.getElementById('botao_quiz').style.display = "none";
-        document.getElementById('botao_novamente').style.display = "block";
-        document.getElementById('botao_visualizar').style.display = "block"; 
+        if(certas >= 0 && certas <= 3){
+            textoFaixa = "Branca"
+        }else if(certas > 3 && certas <= 5){
+            textoFaixa = "Amarela"
+        }else if(certas > 5 && certas <= 7){
+            textoFaixa = "Azul"
+        }else if(certas > 7 && certas <= 9){
+            textoFaixa = "Vermelha"
+        }else{
+            textoFaixa = "Preta"
+        }        
         
         fetch(`/quiz/finalizarJogo`, {
             method: "post",
@@ -388,6 +388,42 @@
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
+
+        fetch(`/quiz/faixa`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ usuarioIdServer: usuarioId, textoFaixaServer: textoFaixa }),
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                console.log("Mensagem salva com sucesso!")
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        mensagemFinal = `Com base em suas respostas: ` + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões, motivaram sua caracteristica! Clique em <b>Visualizar Dashboard e saiba mais!</b>";
+
+        document.getElementById('resultado_mensagem').style.display = "block"
+        document.getElementById('resultado_mensagem').innerHTML = mensagemFinal
+
+        document.getElementById('spanCertas').innerHTML = `Certas: ${certas}`
+        document.getElementById('spanErradas').innerHTML = `Erradas: ${erradas}`
+
+        document.getElementById('questao').style.display = "none";
+        document.getElementById('botao_quiz').style.display = "none";
+        document.getElementById('botao_novamente').style.display = "block";
+        document.getElementById('botao_visualizar').style.display = "block"; 
+        
+
     }
 
     function irParaDashboard() {
