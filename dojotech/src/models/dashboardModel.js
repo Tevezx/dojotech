@@ -39,9 +39,22 @@ function faixa(usuarioId) {
     return database.executar(instrucaoSql);
 }
 
+function historico(usuarioId) {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pontuacao()", usuarioId);
+    var instrucaoSql = `
+        SELECT 
+            r.pontuacao AS pontuacao,
+            DATE_FORMAT(r.dataHora, '%d/%m/%y %H:%i') AS data_quiz
+        FROM registro_quiz r 
+        WHERE r.usuarioId = ${usuarioId} ORDER BY r.dataHora ASC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
     pontuacao,
     fraqueza,
-    faixa
+    faixa,
+    historico
 }

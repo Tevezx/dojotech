@@ -64,6 +64,10 @@
                         Próximo objetivo: Faixa Vermelha.
                     </p>
                 </div>
+
+            </div>
+            <div>
+                <canvas id="grafico_line"></canvas>
             </div>
         </div>
     </main>
@@ -71,7 +75,38 @@
 <script>
     const usuarioId = sessionStorage.ID_USUARIO;
 
-    function grafico(){}
+    function grafico(dados) {
+        var labels = [];
+        var pontuacoes = [];
+
+        for (let index = 0; index < dados.length; index++) {
+            var item = dados[index];
+            
+            labels.push(item.data_quiz);
+            pontuacoes.push(item.pontuacao);
+        }
+
+        const ctx = document.getElementById('grafico_line');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Pontuação por Quiz',
+                    data: pontuacoes,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
 
     function pontuacaoKpi() {
         fetch(`/dashboard/pontuacao/${usuarioId}`, {
@@ -162,10 +197,28 @@
         }
     }
 
+    function historicoKpi() {
+        fetch(`/dashboard/historico/${usuarioId}`, {
+            method: "GET"
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json);
+                    grafico(json);
+                });
+            } else {
+                console.error("Erro ao buscar o historico.");
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        });
+    }
+
     function dashboard() {
         pontuacaoKpi();
         fraquezaKpi();
         faixaKpi();
+        historicoKpi();
     }
 
     window.onload = dashboard;

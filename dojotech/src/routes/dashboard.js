@@ -15,5 +15,9 @@ router.get("/faixa/:usuarioId", function(req, res){
     dashboardController.faixa(req, res);
 })
 
+router.get("/historico/:usuarioId", function(req, res){
+    dashboardController.historico(req, res);
+})
+
 
 module.exports = router;
