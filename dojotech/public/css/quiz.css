@@ -43,6 +43,7 @@ header.cabecalho {
     display: flex;
     align-items: center;
     gap: var(--espacamento-md);
+    max-width: 1200px;
 }
 
 .logo-area {
@@ -81,7 +82,7 @@ header.cabecalho {
 main {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     flex-grow: 1;
     padding: 40px 20px;
 }
@@ -134,6 +135,9 @@ main {
     flex-direction: column;
     gap: 10px;
     margin-top: 15px;
+}
+#questao{
+    min-height: 300px;
 }
 
 .opcao label {

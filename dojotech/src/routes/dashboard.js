@@ -19,5 +19,9 @@ router.get("/historico/:usuarioId", function(req, res){
     dashboardController.historico(req, res);
 })
 
+router.get("/ranking/:usuarioId", function(req, res){
+    dashboardController.ranking(req, res);
+})
+
 
 module.exports = router;

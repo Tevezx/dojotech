@@ -52,9 +52,30 @@ function historico(usuarioId) {
     return database.executar(instrucaoSql);
 }
 
+function ranking(usuarioId) {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pontuacao()", usuarioId);
+    var instrucaoSql = `
+        SELECT 
+            u.nome, 
+            SUM(r.pontuacao) AS pontuacao_total
+        FROM 
+            usuario u
+        JOIN 
+            registro_quiz r ON u.idUsuario = r.usuarioId     
+            GROUP BY 
+            u.idUsuario, u.nome
+            ORDER BY 
+            pontuacao_total DESC
+            LIMIT 10;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     pontuacao,
     perfil,
     faixa,
-    historico
+    historico,
+    ranking
 }

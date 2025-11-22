@@ -38,5 +38,5 @@ function faixa(usuarioId, textoFaixa){
 module.exports = {
     publicar,
     finalizar,
-    faixa
+    faixa,
 }

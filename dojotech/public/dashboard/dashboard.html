@@ -64,6 +64,20 @@
                     </p>
                 </div>
             </div>
+            <div class="ranking-container">
+                <h2>🏆 Top 10 DojoTech</h2>
+                <table id="tabela-ranking">
+                    <thead>
+                        <tr>
+                            <th id="posicao_ranking">Posição</th>
+                            <th id="nome_ranking">Nome</th>
+                            <th id="pontuacao_ranking">Pontuação Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
             <div class="grafico-container">
                 <canvas id="grafico_line"></canvas>
             </div>
@@ -79,7 +93,7 @@
 
         for (let index = 0; index < dados.length; index++) {
             var item = dados[index];
-            
+
             labels.push(item.data_quiz);
             pontuacoes.push(item.pontuacao);
         }
@@ -101,22 +115,22 @@
             },
             options: {
                 responsive: true,
-                plugins:{
-                    title:{
+                plugins: {
+                    title: {
                         display: true,
                         Text: 'Histórico de Pontuaões nos Quizzes',
-                        font:{
-                            size:18
+                        font: {
+                            size: 18
                         }
                     },
-                    legend:{
+                    legend: {
                         display: false
                     }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        title:{
+                        title: {
                             display: true,
                             text: 'Pontuação'
                         }
@@ -212,23 +226,23 @@
         const valorFaixa = document.getElementById('valor_faixa');
         const kpiFaixa = document.getElementById('kpi-faixa');
         const proximaFaixa = document.getElementById('kpi-subtitle');
-        
-        if(faixa == "Branca"){
+
+        if (faixa == "Branca") {
             kpiFaixa.style.borderTopColor = 'white';
             proximaFaixa.innerHTML = "Próxima faixa: Amarela";
-        }else if(faixa == "Amarela"){
+        } else if (faixa == "Amarela") {
             kpiFaixa.style.borderTopColor = 'yellow';
             proximaFaixa.innerHTML = "Próxima faixa: Azul";
-        }else if(faixa == "Azul"){
+        } else if (faixa == "Azul") {
             kpiFaixa.style.borderTopColor = 'blue';
             proximaFaixa.innerHTML = "Próxima faixa: Vermelha";
-        }else if(faixa == "Vermelha"){
+        } else if (faixa == "Vermelha") {
             kpiFaixa.style.borderTopColor = 'red';
             proximaFaixa.innerHTML = "Próxima faixa: Preta";
-        }else if(faixa == "Preta"){
+        } else if (faixa == "Preta") {
             kpiFaixa.style.borderTopColor = 'black';
             proximaFaixa.innerHTML = "";
-        }else{
+        } else {
             kpiFaixa.style.borderTopColor = 'white';
             proximaFaixa.innerHTML = "Próxima faixa Amarela";
         }
@@ -261,12 +275,50 @@
             console.log(erro);
         });
     }
+    function ranking(){
+        fetch(`/dashboard/ranking/${usuarioId}`, {
+            method: "GET"
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json);
+                    exibirRanking(json);
+                });
+            } else {
+                console.error("Erro ao buscar o historico.");
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        });
+    }
+
+    function exibirRanking(ranking){
+        const tabelaRanking = document.getElementById('tabela-ranking');
+
+        if (ranking && ranking.length > 0) {
+            for (let i = 0; i < ranking.length; i++) {
+                const item = ranking[i];
+                
+                tabelaRanking.innerHTML += `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td>${item.nome}</td> 
+                        <td>${item.pontuacao_total}</td> 
+                    </tr>
+                `;
+            }
+        } else {
+            tabelaRanking.innerHTML = '<tr><td>Nenhum dado de ranking encontrado.</td></tr>';
+        }
+
+    }
 
     function dashboard() {
         pontuacaoKpi();
         perfilKpi();
         faixaKpi();
         historicoKpi();
+        ranking()
     }
 
     window.onload = dashboard;
