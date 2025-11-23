@@ -64,23 +64,30 @@
                     </p>
                 </div>
             </div>
-            <div class="ranking-container">
-                <h2>🏆 Top 10 DojoTech</h2>
-                <table id="tabela-ranking">
-                    <thead>
-                        <tr>
-                            <th id="posicao_ranking">Posição</th>
-                            <th id="nome_ranking">Nome</th>
-                            <th id="pontuacao_ranking">Pontuação Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+
+            <div class="ranking-grafico">
+                <div class="ranking-container">
+                    <h2>🏆 Top 10 DojoTech</h2>
+                    <table id="tabela-ranking">
+                        <thead>
+                            <tr>
+                                <th id="posicao_ranking">Posição</th>
+                                <th id="nome_ranking">Nome</th>
+                                <th id="pontuacao_ranking">Pontuação Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="grafico-container">
+                    <h2>Histórico</h2>
+                    <canvas id="grafico_line"></canvas>
+                </div>
+                
             </div>
-            <div class="grafico-container">
-                <canvas id="grafico_line"></canvas>
-            </div>
+
         </div>
     </main>
 </body>
@@ -115,6 +122,7 @@
             },
             options: {
                 responsive: true,
+                aspectRatio: 2.2,
                 plugins: {
                     title: {
                         display: true,
@@ -275,7 +283,7 @@
             console.log(erro);
         });
     }
-    function ranking(){
+    function ranking() {
         fetch(`/dashboard/ranking/${usuarioId}`, {
             method: "GET"
         }).then(function (resposta) {
@@ -292,20 +300,20 @@
         });
     }
 
-    function exibirRanking(ranking){
+    function exibirRanking(ranking) {
         const tabelaRanking = document.getElementById('tabela-ranking');
 
         if (ranking && ranking.length > 0) {
             for (let i = 0; i < ranking.length; i++) {
                 const item = ranking[i];
-                
+
                 tabelaRanking.innerHTML += `
-                    <tr>
-                        <td>${i + 1}</td>
-                        <td>${item.nome}</td> 
-                        <td>${item.pontuacao_total}</td> 
-                    </tr>
-                `;
+                        <tr>
+                            <td>${i + 1}</td>
+                            <td>${item.nome}</td> 
+                            <td>${item.pontuacao_total}</td> 
+                        </tr>
+                    `;
             }
         } else {
             tabelaRanking.innerHTML = '<tr><td>Nenhum dado de ranking encontrado.</td></tr>';

@@ -109,13 +109,13 @@ main {
 
 .kpi-card {
     background-color: var(--white);
-    padding: 12px;
+    padding: 8px;
     border-radius: var(--raio-borda-md);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     border-top: 5px solid transparent;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     flex: 1;
-    min-height: 90px;
+    min-height: 80px;
     min-width: 250px;
 }
 
@@ -132,7 +132,7 @@ main {
 }
 
 .kpi-title {
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: var(--secondary);
     text-transform: uppercase;
@@ -140,14 +140,14 @@ main {
 }
 
 .kpi-value {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 800;
     color: var(--main);
     margin-top: 0.25rem;
 }
 
 .kpi-value-secondary {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: var(--main);
     margin-top: 0.5rem;
@@ -160,7 +160,7 @@ main {
 }
 
 .kpi-subtitle, #kpi-subtitle {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: #888;
     margin-top: 0.5rem;
 }
@@ -191,21 +191,33 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 450px;
-    padding: var(--espacamento-md);
+    height: 300px;
+    padding: 0;
     width: 100%;
-    margin-top: var(--espacamento-lg);
+    margin-top: 0;
     background-color: var(--white);
     border-radius: var(--raio-borda-md);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
+.grafico-container{
+    flex: 2;
+    padding: var(--espacamento-md);
+    background-color: var(--white);
+}
+
+.grafico-container h2{
+    font-size: 1.5em;
+    color: var(--terciaria);
+    margin-bottom: var(--espacamento-md);
+}
+
 .ranking-container {
-    margin-top: var(--espacamento-lg);
     background-color: var(--white);
     padding: var(--espacamento-md);
     border-radius: var(--raio-borda-md);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    flex: 1;
 }
 
 .ranking-container h2 {
@@ -235,4 +247,10 @@ main {
     font-weight: 700;
     background-color: rgba(192, 53, 58, 0.1); 
     color: var(--primary);
+}
+
+.ranking-grafico{
+    display: flex;
+    gap: var(--espacamento-lg);
+    margin-top: var(--espacamento-lg);
 }
