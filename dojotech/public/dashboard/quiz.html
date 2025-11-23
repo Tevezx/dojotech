@@ -76,7 +76,8 @@
                     <button type="button" id="botao_novamente" style="display: none;" onclick="tentarNovamente()">Tentar
                         Novamente</button>
                     <div id="resultado_mensagem" style="display: none;"></div>
-                    <span id="spanCertas" style="color: green; padding: 10px 10px 10px 10px"></span>    <span id="spanErradas" style="color: red;"></span>
+                    <span id="spanCertas" style="color: green; padding: 10px 10px 10px 10px"></span> <span
+                        id="spanErradas" style="color: red;"></span>
                     <button type="button" id="botao_visualizar" style="display: none;"
                         onclick="irParaDashboard()">Visualizar dashboard</button>
                 </div>
@@ -92,93 +93,93 @@
 
     const listaDeQuestoes = [
         {
-            pergunta: "Em uma luta, qual ferramenta você usaria primeiro para manter o oponente afastado?",
-            alternativaA: "Chutes de longo alcance",
-            alternativaB: "Soco e bloqueio para criar distância",
-            alternativaC: "Agarramento para controle e queda",
-            alternativaD: "Mover-se para evitar e buscar um takedown",
-            alternativaCorreta: "alternativaA"
+            pergunta: "Qual dos três princípios fundamentais do Hapkido (*Hap*, *Ki*, *Do*) se refere à coordenação e união?",
+            alternativaA: "Ki (Energia e Força)",
+            alternativaB: "Do (Caminho ou Arte)",
+            alternativaC: "Hap (Harmonia e União)",
+            alternativaD: "Sul (Técnica)",
+            alternativaCorreta: "alternativaC"
         },
 
         {
-            pergunta: "Se for agarrado por trás, qual sua reação primária?",
-            alternativaA: "Realizar uma queda ou projeção",
-            alternativaB: "Usar um stomp ou chute lateral",
-            alternativaC: "Aplicar uma chave de articulação ou ponto de pressão",
-            alternativaD: "Golpear ou usar cotoveladas para liberar a pegada",
-            alternativaCorreta: "alternativaD"
+            pergunta: "Em um ataque de soco frontal, qual técnica de defesa é tipicamente priorizada?",
+            alternativaA: "Bloqueio rígido com força oposta.",
+            alternativaB: "Esquiva lateral e entrada para uma projeção (throw).",
+            alternativaC: "Avançar para o clinch e imobilizar.",
+            alternativaD: "Chute de curta distância (knee kick) no abdômen.",
+            alternativaCorreta: "alternativaB"
         },
 
         {
-            pergunta: "Qual tipo de treino você considera mais crucial para sua evolução no Hapkido?",
-            alternativaA: "Treino de solo e controle de imobilização",
-            alternativaB: "Treino de esquivas e timing de golpe",
-            alternativaC: "Treino de flexibilidade e chutes acrobáticos",
-            alternativaD: "Treino de quedas e rolamentos seguros",
-            alternativaCorreta: "alternativaD"
+            pergunta: "Qual tipo de movimento de quadril é essencial para a potência dos chutes giratórios?",
+            alternativaA: "Movimento de cima para baixo (vertical).",
+            alternativaB: "Rotação completa do quadril e pivô do pé de apoio.",
+            alternativaC: "Inclinação lateral do tronco.",
+            alternativaD: "Apenas a elevação rápida do joelho.",
+            alternativaCorreta: "alternativaB"
         },
 
         {
-            pergunta: "O oponente avança com força total. Sua primeira prioridade é:",
-            alternativaA: "Entrar na linha de ataque para derrubá-lo",
-            alternativaB: "Interceptar o avanço com um chute frontal",
-            alternativaC: "Usar a força dele contra ele com uma técnica de articulação",
-            alternativaD: "Golpear para interromper o avanço e criar uma abertura",
-            alternativaCorreta: "alternativaD"
+            pergunta: "Em uma imobilização de solo, qual é o principal objetivo?",
+            alternativaA: "Cansar o oponente com o peso corporal.",
+            alternativaB: "Manter o controle e buscar uma finalização (chave ou estrangulamento).",
+            alternativaC: "Aguardar a desistência do oponente.",
+            alternativaD: "Mudar rapidamente para a posição de pé.",
+            alternativaCorreta: "alternativaB"
         },
 
         {
-            pergunta: "Qual elemento do Hapkido você mais admira em um mestre?",
-            alternativaA: "A capacidade de derrubar um adversário com mínimo esforço",
-            alternativaB: "A precisão e potência dos golpes de mão",
-            alternativaC: "O domínio e a aplicação de chaves de pulso e cotovelo",
-            alternativaD: "A variedade e a altura dos chutes",
-            alternativaCorreta: "alternativaD"
+            pergunta: "A defesa contra armas no Hapkido se baseia fortemente no princípio de:",
+            alternativaA: "Confrontar a arma diretamente com a mão mais forte.",
+            alternativaB: "Manter uma distância segura em todas as situações.",
+            alternativaC: "Controlar a linha de ataque e desarmar com chaves de articulação.",
+            alternativaD: "Usar o próprio corpo como escudo.",
+            alternativaCorreta: "alternativaC"
         },
 
         {
-            pergunta: "Lidando com múltiplos atacantes, qual tática você priorizaria?",
-            alternativaA: "Manter a distância usando chutes para afastar",
-            alternativaB: "Mover-se constantemente, usando quedas para desorganizar o grupo",
-            alternativaC: "Usar combinações rápidas de soco e cotovelo",
-            alternativaD: "Controlar o primeiro atacante para usá-lo como escudo",
-            alternativaCorreta: "alternativaD"
+            pergunta: "Qual é o principal foco do treino de *Nakbeop* (técnicas de queda)?",
+            alternativaA: "Aterrisagem silenciosa.",
+            alternativaB: "Projeção de oponentes.",
+            alternativaC: "Absorção de impacto e proteção da coluna vertebral.",
+            alternativaD: "Ataques enquanto está no chão.",
+            alternativaCorreta: "alternativaC"
         },
 
         {
-            pergunta: "Qual é a sua distância de combate mais confortável?",
-            alternativaA: "Longo alcance, usando a perna",
-            alternativaB: "Médio alcance, para golpes de mão e corpo-a-corpo",
-            alternativaC: "Curto alcance, corpo-a-corpo, para chaves e estrangulamentos",
-            alternativaD: "Distância de entrada e saída rápida para projeções",
-            alternativaCorreta: "alternativaD"
+            pergunta: "Qual dos alvos a seguir é considerado um ponto de pressão primário para desequilíbrio e dor?",
+            alternativaA: "O músculo bíceps.",
+            alternativaB: "A parte lateral do pescoço.",
+            alternativaC: "O pulso ou o cotovelo.",
+            alternativaD: "O tornozelo.",
+            alternativaCorreta: "alternativaC"
         },
 
         {
-            pergunta: "Quando o oponente está em desvantagem, como você finaliza a técnica?",
-            alternativaA: "Com um golpe finalizador no corpo ou cabeça",
-            alternativaB: "Com uma queda forte no chão",
-            alternativaC: "Com uma imobilização ou chave de finalização",
-            alternativaD: "Com uma sequência de chutes rápidos",
-            alternativaCorreta: "alternativaD"
+            pergunta: "A distância ideal para executar uma chave de pulso complexa é:",
+            alternativaA: "Longo alcance (usando chutes).",
+            alternativaA: "Médio alcance (apenas socos).",
+            alternativaC: "Curto alcance ou clinch.",
+            alternativaD: "Qualquer distância, desde que haja velocidade.",
+            alternativaCorreta: "alternativaC"
         },
 
         {
-            pergunta: "Se o oponente está com uma faca, qual princípio você aplicaria primeiro?",
-            alternativaA: "Desarmar com uma chave de pulso complexa",
-            alternativaB: "Chutar o braço/mão que segura a arma",
-            alternativaC: "Evitar o ataque e usar o momentum para uma queda",
-            alternativaD: "Golpear rapidamente para atordoar e desarmar",
-            alternativaCorreta: "alternativaD"
+            pergunta: "O que o conceito de *Hwa* (Círculo) sugere ao lidar com a força do oponente?",
+            alternativaA: "Encontrar a força dele com força igual.",
+            alternativaA: "Desviar e deixar a força passar.",
+            alternativaC: "Usar movimentos circulares para redirecionar e anular o ataque.",
+            alternativaD: "Congelar o ataque com um bloqueio estático.",
+            alternativaCorreta: "alternativaC"
         },
 
         {
-            pergunta: "Qual atributo é a sua maior arma em um confronto real?",
-            alternativaA: "Minha capacidade de adaptar-me à força do agressor",
-            alternativaB: "Minha agilidade e poder de chute",
-            alternativaC: "Minha velocidade e precisão de soco",
-            alternativaD: "Meu equilíbrio e capacidade de projetar o oponente",
-            alternativaCorreta: "alternativaD"
+            pergunta: "Em uma situação de defesa pessoal real, o principal objetivo final deve ser:",
+            alternativaA: "Nocautear o agressor imediatamente.",
+            alternativaB: "Aplicar a técnica mais bonita ou complexa.",
+            alternativaC: "Neutralizar a ameaça e sair da situação de perigo.",
+            alternativaD: "Provar a superioridade da sua arte marcial.",
+            alternativaCorreta: "alternativaC"
         },
     ]
 
