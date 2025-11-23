@@ -8,8 +8,10 @@
     <title>DojoTech | Página Inicial</title>
 
     <link rel="stylesheet" href="./css/index.css">
-    <link rel="icon" href=".assets/imgs/logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="icon" href="./assets/imgs/logo.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -39,7 +41,7 @@
                     <br>Domine as técnicas de defesa pessoal, quedas, golpes e manipulação de articulações em uma das
                     artes marciais mais completas da Coreia.
                 </p>
-                <a href="/" class="btn-tecnicas">Conheça as técnicas</a>
+                <a href="#hapkido-section" class="btn-tecnicas">Conheça as técnicas</a>
             </div>
         </section>
 
@@ -71,37 +73,40 @@
                     adversário contra ele mesmo.
                     Éuma disciplina que combina um vasto e gracioso repertório de movimentos, tornando-se uma das artes
                     marciais mais completas do mundo.</p>
-                <a href="https://hapkidobrasil.com.br/o-hapkido-a-arte-de-coordenar-a-energia/historia-do-surgimento-do-hapkido/">Saiba mais <img src="./assets/icon/seta.png" alt="Icon | Seta"> </a>
+                <a
+                    href="https://hapkidobrasil.com.br/o-hapkido-a-arte-de-coordenar-a-energia/historia-do-surgimento-do-hapkido/">Saiba
+                    mais <img src="./assets/icon/seta.png" alt="Icon | Seta"> </a>
             </div>
             <img src="./assets/imgs/hapkido.png" alt="Sobre | Hapkido">
         </section>
         <section id="faixas-section">
             <div class="container">
                 <div class="faixas-header">
-                    <h2>FAIXA BRANCA</h2>
-                    <img src="./assets/imgs/faixaBranca.png" alt="Faixa Branca | Bandeira do Brasil">
+                    <h2 id="faixas"></h2>
                 </div>
 
                 <div class="faixas-grid">
 
-                    <div class="faixa-card faixa-white">
+                    <div class="faixa-card faixa-white" onclick="faixaBranca()">
                         <p>O começo, pureza, é alusão a um papel em branco.</p>
                     </div>
 
-                    <div class="faixa-card faixa-yellow">
+                    <div class="faixa-card faixa-yellow" onclick="faixaAmarela()">
                         <p>O despertar, a semente que começa a germinar no solo.</p>
                     </div>
 
-                    <div class="faixa-card faixa-blue">
+                    <div class="faixa-card faixa-blue" onclick="faixaAzul()">
                         <p>A liberdade e o céu, o aluno começa a ter clareza e domínio.</p>
                     </div>
 
-                    <div class="faixa-card faixa-red">
-                        <p>Alerta, a energia do sol. É um nível avançado que precede a graduação final.</p>
+                    <div class="faixa-card faixa-red" onclick="faixaVermelha()">
+                        <p>Alerta, a energia do sol. É um nível avançado que precede a graduação final.
+                        </p>
                     </div>
 
-                    <div class="faixa-card faixa-black">
-                        <p>O conhecimento completo de todas as cores. A faixa preta é o ponto de transição para a Faixa
+                    <div class="faixa-card faixa-black" onclick="faixaPreta()">
+                        <p>O conhecimento completo de todas as cores. A faixa preta é o ponto de
+                            transição para a Faixa
                             Preta (Dan).</p>
                     </div>
                 </div>
@@ -157,15 +162,15 @@
                         </div>
 
                         <div class="detail-item">
-                            <h3><span class="highlight">0 a 500</span> Pontos</h3>
+                            <h3><span class="highlight">0 a 10</span> Pontos</h3>
                             <p>Cada resposta correta te aproxima da maestria. Sua pontuação define sua classificação e
                                 faixa potencial.</p>
                         </div>
 
                         <div class="detail-item">
                             <h3>Dashboard de Avaliação</h3>
-                            <p>Ao final, receba um relatório detalhado. Identifique suas **fraquezas** para focar no
-                                treino e seus **pontos fortes** para dominar a arte.</p>
+                            <p>Ao final, receba um relatório detalhado. Identifique suas fraquezas para focar no
+                                treino e seus pontos fortes para dominar a arte.</p>
                         </div>
 
                         <div class="detail-item">
@@ -174,15 +179,15 @@
                                 reflete, motivando seu próximo passo.</p>
                         </div>
                     </div>
-                    <a href="/public/cadastro.html" class="btn-start-game">COMECE O DESAFIO AGORA</a>
+                    <a href="./cadastro.html" class="btn-start-game">COMECE O DESAFIO AGORA</a>
                 </div>
             </div>
         </section>
         <footer>
             <div class="container-footer">
                 <div class="footer-coluna logo-info">
-                    <img src="./assets/imgs/logo.png" alt="DojoTech | Logo" class="logo-footer">
-                    <p>A plataforma definitiva para estudar e dominar a arte marcial coreana, Hapkido. Treine a mente e o corpo.</p>
+                    <p>A plataforma definitiva para estudar e dominar a arte marcial coreana, Hapkido. Treine a mente e
+                        o corpo.</p>
                 </div>
 
                 <div class="footer-coluna links-uteis">
@@ -194,13 +199,35 @@
                         <li><a href="#valores-section">Valores</a></li>
                         <li><a href="#quiz-section">Quiz</a></li>
                     </ul>
-                </div>                
+                </div>
             </div>
             <div class="direitos-autorais">
-                    <p>&copy; 2025 DojoTech. Todos os direitos reservados. | Desenvolvido com Disciplina e Foco.</p>
-                </div>
+                <p>&copy; 2025 DojoTech. Todos os direitos reservados. | Desenvolvido com Disciplina e Foco.</p>
+            </div>
         </footer>
     </main>
 </body>
+<script>
+    function faixaBranca() {
+        branca = document.getElementsByClassName('faixa-white');
+        faixas.innerHTML = `<b style="color:white;"> FAIXA BRANCA </b>`;
+    }
+    function faixaAmarela() {
+        amarela = document.getElementsByClassName('faixa-yellow');
+        faixas.innerHTML = `<b style="color:yellow;"> FAIXA AMARELA </b>`;
+    }
+    function faixaAzul() {
+        azul = document.getElementsByClassName('faixa-blue');
+        faixas.innerHTML = `<b style="color:blue;"> FAIXA AZUL </b>`;
+    }
+    function faixaVermelha() {
+        vermelha = document.getElementsByClassName('faixa-red');
+        faixas.innerHTML = `<b style="color:red;"> FAIXA VERMELHA </b>`;
+    }
+    function faixaPreta() {
+        preta = document.getElementsByClassName('faixa-black');
+        faixas.innerHTML = `<b style="color:white;"> FAIXA PRETA </b>`;
+    }
+</script>
 
 </html>

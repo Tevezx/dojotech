@@ -222,7 +222,7 @@ header nav ul li:not(:last-child) a:hover {
 #hapkido-section{
     display: flex;
     align-items: stretch;
-    background-color: var(--black);
+    background-image: linear-gradient(var(--terciaria), var(--black));
     opacity: 1;
     flex-wrap: wrap;
 }
@@ -283,7 +283,7 @@ header nav ul li:not(:last-child) a:hover {
 }
 
 #faixas-section {
-    background-color: var(--terciaria); 
+    background-image: linear-gradient(var(--black), var(--terciaria));
     padding: 80px 0;
 }
 
@@ -357,7 +357,7 @@ header nav ul li:not(:last-child) a:hover {
 }
 
 #valores-section {
-    background-color: var(--black);
+    background-image: linear-gradient(var(--terciaria), var(--black));
     padding: 80px 0;
 }
 
@@ -409,9 +409,9 @@ header nav ul li:not(:last-child) a:hover {
 }
 
 .valor-card img {
-    width: 80px; 
-    height: 80px;
-    object-fit: contain; 
+    width: 250px; 
+    height: auto;
+    object-fit: cover; 
     margin-bottom: 15px;
     opacity: 0.8;
 }
@@ -429,7 +429,7 @@ header nav ul li:not(:last-child) a:hover {
 }
 
 #quiz-section {
-    background-color: var(--black);
+    background-image: linear-gradient(var(--black), var(--terciaria));
     padding: 50px 0;
 }
 
@@ -443,9 +443,8 @@ header nav ul li:not(:last-child) a:hover {
 }
 
 #quiz-section img {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
+    width: 350px;
+    height: 550px;
     object-fit: cover;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
@@ -556,15 +555,10 @@ footer{
     padding: 0;
     margin: 0;
 }
-.logo-footer{
-    width: 250px;
-    height: auto;
-    margin-bottom: 5px;
-}
 
 .logo-info p {
     line-height: 1.5;
-    margin-bottom: 0;
+    margin-top: 10px;
     max-width: 400px;
     color: #aaa;
 }
