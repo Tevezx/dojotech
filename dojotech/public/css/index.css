@@ -409,7 +409,7 @@ header nav ul li:not(:last-child) a:hover {
 }
 
 .valor-card img {
-    width: 250px; 
+    width: 120px; 
     height: auto;
     object-fit: cover; 
     margin-bottom: 15px;
